@@ -112,7 +112,7 @@ var _counter = 0;
 function onActivity3(){
 	const counter = new Activity("counter",`
 
-		<custom-floating-button icon-src="plus.svg" class=" pos-bottom pos-center  normal" id="fbtn2" onclick="_counter++; document.getElementById('_counter').innerText='Pressed: '+_counter;"></custom-floating-button>
+		<custom-floating-button src="plus.svg" pos="bottom center " size=" normal" id="fbtn2" onclick="_counter++; document.getElementById('_counter').innerText='Pressed: '+_counter;"></custom-floating-button>
 
 		<d-navbar activity="counter" position="top">
 			<navbar-title> Top bar <navbar-title>
@@ -123,5 +123,17 @@ function onActivity3(){
 		<button onclick="onActivity2()">config</button>
 		
 	`);
+  
 	goActivity(counter,"slide_up");
+  const floating1 = new FloatingButton2({
+  	icon:"plus.svg",
+  	position:"top center",
+  	size:"normal",
+  	onclick:"console.log",
+  	activity:"counter",
+	
+})
 }
+
+
+

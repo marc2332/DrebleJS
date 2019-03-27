@@ -24,13 +24,14 @@ body{
 	display: flex;
 	padding: 5px;
 	box-sizing: border-box;
-  position:absolute;
-  overflow:hidden;
+    position:absolute;
+    overflow:hidden;
 	width: 100%;
 	background: var(--PrimaryColor);
 	height:55px;	
 	white-space: nowrap;
 }
+
 .navbar.top{
 	top:0;
 	box-shadow: 0px 3px 10px rgba(0,0,0,0.3);
@@ -42,21 +43,21 @@ body{
 	box-shadow: 0px -5px 8px rgba(0,0,0,0.3);
 }
 .navbar > navbar-title{
-	display: inline-block;
+	display: flex;
 	font-size: 20px;
 	color:white;
 	position: relative;
-	top:10px;
+	top:13px;
 }
 .navbar > .navbar-icon{
 	margin: 0;
 	position: relative;
-	top: 3px;
+	top: 1px;
 	bottom: 0px;
-	display: inline-block;
+	display: flex;
 	height: 25px;
 	width: 25px;	
-	padding: 6px;
+	padding: 10px;
 	margin: 0px 5px;
 	cursor: pointer;
 	border-radius: 100px;
@@ -236,7 +237,7 @@ button.disabled:not(.FloatingButton){
     border: none;
     margin: 0;
     padding: 0;
-    border-radius: 50px;
+    border-radius: 300px;
     box-shadow: 0px 2px 10px rgba(0,0,0,0.3);
     color: var(--BackgroundColor);
 }
@@ -258,35 +259,35 @@ button.disabled:not(.FloatingButton){
     box-shadow: 0px 2px 10px rgba(0,0,0,0.3);
     color: var(--BackgroundColor);
 }
-.FloatingButton.pos-top{
+.FloatingButton[pos~="top"]{
     top:30px;
 }
-.FloatingButton.pos-right{
+.FloatingButton[pos~="right"]{
     right:30px;
 }
-.FloatingButton.pos-left{
+.FloatingButton[pos~="left"]{
     left:30px;
 }
-.FloatingButton.pos-bottom{
+.FloatingButton[pos~="bottom"]{
     bottom: 30px;
 }
-.FloatingButton.pos-center{
+.FloatingButton[pos~="center"]{
     left:45%;
     
 }
 
 
 .FloatingButton.small{
-    height: 45px;
-    width:45px;
+    height: 160px;
+    width:160px;
 }
-.FloatingButton.normal{
-    height: 57px;
-    width:57px;
+.FloatingButton[size~="normal"]{
+    height: 175px;
+    width:175px;
 }
 .FloatingButton.big{
-    height: 65px;
-    width:65px;
+    height: 190px;
+    width:190px;
 }
 .spacer{
 	border-top:2px solid lightgray;
@@ -388,4 +389,8 @@ button.disabled:not(.FloatingButton){
     left: -300px;
     opacity: 0.3;
   }
+}
+
+@media only screen and (max-device-width : 640px) {
+	
 }

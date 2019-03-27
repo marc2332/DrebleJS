@@ -77,13 +77,15 @@ class FloatingButton extends  HTMLElement {
         }else{
             button.setAttribute("class"," FloatingButton "+this.getAttribute("class"));
         }
-        button.setAttribute("id",this.id);
+      	button.setAttribute("pos",this.getAttribute("pos"));
+        button.setAttribute("size",this.getAttribute("size"));
+      	button.setAttribute("id",this.id);
         if(this.getAttribute("text")== null){
             button.innerHTML = ".";
-            button.style = "background-image: url(" + this.getAttribute("icon-src") +") ; background-repeat: no-repeat; background-position: center; font-size: 0;"; 
+            button.style = "background-image: url(" + this.getAttribute("src") +") ; background-repeat: no-repeat; background-position: center; font-size: 0;"; 
         }else{
             button.innerHTML = this.getAttribute("text");
-            button.style = "background-image: url(" + this.getAttribute("icon-src") +") ; background-repeat: no-repeat; background-position: center; font-size: 15px;"; 
+            button.style = "background-image: url(" + this.getAttribute("src") +") ; background-repeat: no-repeat; background-position: center; font-size: 15px;"; 
         }
         if(this.classList.contains("disabled")=== false) button.setAttribute("onclick",this.getAttribute("onclick"));
         
@@ -263,4 +265,13 @@ function closeMenu(me){
 		menu.remove();
 	 }, 200);
 	
+}
+function FloatingButton2(obj){ 
+  	const _fbtn = document.createElement("button");
+  	_fbtn.setAttribute("size",obj.size);
+  	_fbtn.setAttribute("src",obj.icon);
+  _fbtn.classList = "FloatingButton";
+  	_fbtn.setAttribute("pos",obj.position);
+  	document.getElementById(obj.activity).appendChild(_fbtn);
+  
 }
