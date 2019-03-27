@@ -1,5 +1,5 @@
 window.onload = function(){
-	var style= document.createElement('script');
+	const style= document.createElement('script');
   style.innerHTML = "";
     document.body.appendChild(style); 
 	Main();
@@ -12,7 +12,7 @@ window.onerror = function(){
 var i = 0;
 function load(config){
 	
-	var act = config['defaultActivity'];
+	const act = config['defaultActivity'];
 	document.body.innerHTML += act.innerHTML;
 	activitiesHistory.push(act.children[0].id);
 	refreshRippleElements();
@@ -24,7 +24,7 @@ class Navbar extends  HTMLElement {
     	super();
     	
     	if(activity!=undefined){ //Created from JavaScript
-    	var page = document.getElementById(activity).children[0];
+    	const page = document.getElementById(activity).children[0];
 
     	 page.innerHTML += "<div id="+id+" class='navbar "+position+"'>"+code+"</div>";	
 
@@ -38,10 +38,10 @@ class Navbar extends  HTMLElement {
     }
     connectedCallback(activity,id,position,code){  //Created from html
   
-			var page = document.getElementById(this.getAttribute("activity")).children[0];
-			var position = this.getAttribute("position");
-			var code = this.innerHTML;
-			var id = this.getAttribute("id");
+			const page = document.getElementById(this.getAttribute("activity")).children[0];
+			 position = this.getAttribute("position");
+			 code = this.innerHTML;
+			 id = this.getAttribute("id");
 			this.remove();
 
 			page.innerHTML += "<div id="+id+" class='navbar "+position+"'>"+code+"</div>";	
@@ -71,7 +71,7 @@ class FloatingButton extends  HTMLElement {
         super();
     } 
     connectedCallback(){
-        var button = document.createElement("button");
+        const button = document.createElement("button");
         if(this.classList.contains("disabled")===false) {
             button.setAttribute("class"," ripple FloatingButton "+this.getAttribute("class"));
         }else{
@@ -125,7 +125,7 @@ function closeActivity(act,type){
 
 function refreshRippleElements(){
 
-var buttons = document.getElementsByClassName('ripple');
+const buttons = document.getElementsByClassName('ripple');
  Array.prototype.forEach.call(buttons, function (b) {
  	b.addEventListener('click', newRipple); }); 
 }
@@ -259,11 +259,11 @@ function Menu(activity,code){
 
 function closeMenu(me){
 	const menu = document.getElementById(me.getAttribute("toclose"));
-	menu.children[1].style= "animation:_menu_left 0.2s;";
+	menu.classList.add("hiding");
 
 	setTimeout(function(){ 
 		menu.remove();
-	 }, 200);
+	 }, 180);
 	
 }
 function FloatingButton2(obj){ 
