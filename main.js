@@ -125,14 +125,14 @@ function onActivity3(){
 	`);
   
 	goActivity(counter,"slide_up");
-  const floating1 = new FloatingButton2({
+  /*const floating1 = new FloatingButton2({
   	icon:"plus.svg",
   	position:"top center",
   	size:"normal",
   	onclick:"console.log",
   	activity:"counter",
 	
-})
+	})*/
 }
 
 
