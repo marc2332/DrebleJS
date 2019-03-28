@@ -161,9 +161,18 @@ body{
     left:60%;
   }
 }
+@keyframes _activity_expand{
+  from{
+    transform: scale(0.85);
+  }
+  to{
+    transform: scale(1);
+  }
+}
 button {
     overflow: hidden;
     position: relative;
+    user-select: none;
 
   }
 button .ripple {

@@ -1,6 +1,6 @@
 
 
-const HomeAct = new activity("Home",`
+const HomeAct = new activity({name:"Home",code:`
 
 	<d-navbar activity="Home" position="top">
 		<navbar-title> Main Activity </navbar-title>
@@ -13,12 +13,10 @@ const HomeAct = new activity("Home",`
 	<p>Lorem ipsum dolor sit amet consectetur adipiscing elit ligula rutrum convallis aenean, egestas consequat massa sagittis purus tortor accumsan integer magnis class, faucibus enim quis orci facilisis per hendrerit vel velit proin. Dapibus suscipit leo aptent hac litora varius aliquet bibendum donec sollicitudin sed in viverra interdum tempor pharetra augue pellentesque, nibh duis quis sagittis odio gravida blandit class nulla dignissim mollis libero nisl consequat orci ante non. Curae sed vel proin duis suscipit hendrerit varius aliquet, pretium sagittis lectus fames nulla enim penatibus, habitasse malesuada eleifend rutrum nec ut nam.
 	</p>
 
-
-	
 	<button onclick="onActivity2()">config</button>
 	<button onclick="onActivity3()">Counter</button>
 
-	`);
+	`});
 function createDialog1(){
 	newDialog('Home',`
 
@@ -29,7 +27,7 @@ function createDialog1(){
 function createAppDrawer1(){
 	new Menu("config",`
 		<p>Side menu!</p>
-		<button onclick="closeActivity('config','slide_down')">close activity</button>
+		<button onclick="closeActivity('config','slide_right')">close activity</button>
 		
 
 		`);
@@ -45,7 +43,7 @@ function Main(){
         RippleEffect : 'yellow'
     }
     newTheme(colors);
-    setTheme("Blue");	
+    setTheme("Purple");	
 
 	load({
 		home: HomeAct,
@@ -56,7 +54,7 @@ function Main(){
 
 
 function onActivity2(){
-	const configAct = new activity("config",`
+	const configAct = new activity({name:"config",code:`
 	<custom-floating-button src="tick.svg" pos=" bottom right "size=" normal" id="fbtn1" onclick="alert('hi!!')"></custom-floating-button>
 
 	<d-navbar activity="config" position="top">
@@ -70,16 +68,16 @@ function onActivity2(){
 	<button class="ripple" onclick="closeActivity('config','slide_right')">back</button>
 	<p>Click the floating button</p>
 	
-	`);
+	`});
 	configAct.launch({
-  	animation:"slide_left"
+  	animation:"expand"
   })
 
 }
 
 let _counter = 0;
 function onActivity3(){
-	const counter = new activity("counter",`
+	const counter = new activity({name:"counter",code:`
 
 		<custom-floating-button src="plus.svg" pos="bottom left " size=" normal" id="fbtn2" onclick="_counter++; document.getElementById('_counter').innerText='Pressed: '+_counter;"></custom-floating-button>
 
@@ -91,7 +89,7 @@ function onActivity3(){
 		<button onclick="closeActivity('counter','slide_down')">Go back</button>
 		<button onclick="onActivity2()">config</button>
 		
-	`);
+	`});
   counter.launch({
   	animation:"slide_left"
   })

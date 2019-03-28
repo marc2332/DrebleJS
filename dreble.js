@@ -1,4 +1,5 @@
-
+let activitiesHistory = [];
+let i = 0;
 window.onload = function(){
 	const style= document.createElement('script');
   style.innerHTML = "";
@@ -6,20 +7,19 @@ window.onload = function(){
 	Main();
 }
 window.onerror = function(){
-	/*document.body.innerHTML = `
-	<p style="left:50%; transform: translate(-50%, -45%); top:50%; position:fixed;">An error ocurred.</p>
-	`;*/
+	document.body.innerHTML = `
+	<p style=" font-family: _main_font !important; left:50%; transform: translate(-50%, -45%); top:50%; position:fixed;">An error ocurred.</p>
+	`;
 }
-var i = 0;
 function load(obj){
 	
 	const act = obj['home'];
-     const _ACTIVITY = document.createElement("div");
-        _ACTIVITY.classList = "activity";
-        _ACTIVITY.setAttribute("id",act.name);
-        _ACTIVITY.innerHTML=`
-        <div class="content" >${act.code}</div>`;
-    document.body.appendChild(_ACTIVITY);
+    const _activity_ = document.createElement("div");
+    _activity_.classList = "activity";
+    _activity_.setAttribute("id",act.name);
+    _activity_.innerHTML=`
+    <div class="content" >${act.code}</div>`;
+    document.body.appendChild(_activity_);
 	activitiesHistory.push(act.name);
 	refreshRippleElements();
      const new_style = document.createElement("link");
@@ -29,11 +29,9 @@ function load(obj){
 
 
 }
-var activitiesHistory = [];
 class Navbar extends  HTMLElement {
     constructor(activity,id,position,code) {
     	super();
-    	
     	if(activity!=undefined){ //Created from JavaScript
     	const page = document.getElementById(activity);
     	const nav = document.createElement("div");
@@ -43,10 +41,8 @@ class Navbar extends  HTMLElement {
             nav.innerHTML = code;
             page.insertBefore(nav,page.children[0]);    
         }
-
     }
     connectedCallback(){  //Created from html
-  
 			const page = document.getElementById(this.getAttribute("activity"));
 			this.remove();
             const nav = document.createElement("div");
@@ -55,26 +51,24 @@ class Navbar extends  HTMLElement {
             nav.setAttribute("pos",this.getAttribute("position")),
             nav.innerHTML = this.innerHTML;
             page.insertBefore(nav,page.children[0]);	
-	         
     }
-
 }
 window.customElements.define('d-navbar', Navbar);
-
-function activity(name,code){
-    this.name = name;
-    this.code = code;
+function activity(obj){
+    this.name = obj.name;
+    this.code = obj.code;
     this.launch = function(_config){
-        const _ACTIVITY = document.createElement("div");
-        _ACTIVITY.classList = "activity";
-        _ACTIVITY.setAttribute("id",this.name);
-        _ACTIVITY.innerHTML=`
-        <div class="content" >${this.code}</div>
-        `
-        document.body.appendChild(_ACTIVITY);
-        document.getElementById(this.name).style = `animation: _activity_${_config.animation} 0.25s;`;
-        activitiesHistory.push(this.name);
-        refreshRippleElements();
+
+            const _ACTIVITY = document.createElement("div");
+            _ACTIVITY.classList = "activity";
+            _ACTIVITY.setAttribute("id",this.name);
+            _ACTIVITY.innerHTML=`
+            <div class="content" >${this.code}</div>
+            `
+            document.body.appendChild(_ACTIVITY);
+            document.getElementById(this.name).style = `animation: _activity_${_config.animation} 0.25s;`;
+            activitiesHistory.push(this.name);
+            refreshRippleElements();
     }
    
 }
