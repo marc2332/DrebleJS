@@ -1,3 +1,4 @@
+
 window.onload = function(){
 	const style= document.createElement('script');
   style.innerHTML = "";
@@ -5,17 +6,27 @@ window.onload = function(){
 	Main();
 }
 window.onerror = function(){
-	document.body.innerHTML = `
+	/*document.body.innerHTML = `
 	<p style="left:50%; transform: translate(-50%, -45%); top:50%; position:fixed;">An error ocurred.</p>
-	`;
+	`;*/
 }
 var i = 0;
-function load(config){
+function load(obj){
 	
-	const act = config['defaultActivity'];
-	document.body.innerHTML += act.innerHTML;
-	activitiesHistory.push(act.children[0].id);
+	const act = obj['home'];
+     const _ACTIVITY = document.createElement("div");
+        _ACTIVITY.classList = "activity";
+        _ACTIVITY.setAttribute("id",act.name);
+        _ACTIVITY.innerHTML=`
+        <div class="content" >${act.code}</div>`;
+    document.body.appendChild(_ACTIVITY);
+	activitiesHistory.push(act.name);
 	refreshRippleElements();
+     const new_style = document.createElement("link");
+    new_style.setAttribute("href",obj.style);
+    new_style.setAttribute("rel","stylesheet");
+    document.getElementById("dreble_themes").appendChild(new_style);
+
 
 }
 var activitiesHistory = [];
@@ -24,48 +35,49 @@ class Navbar extends  HTMLElement {
     	super();
     	
     	if(activity!=undefined){ //Created from JavaScript
-    	const page = document.getElementById(activity).children[0];
-
-    	 page.innerHTML += "<div id="+id+" class='navbar "+position+"'>"+code+"</div>";	
-
-				        if(position==="top"){
-				        	page.style["padding-top"] = " 60px ";
-				        }else if(position==="bottom"){
-				        	page.style["padding-bottom"] = " 60px ";
-				        }
-				      }
+    	const page = document.getElementById(activity);
+    	const nav = document.createElement("div");
+            nav.classList = "navbar";
+            nav.id = id;
+            nav.setAttribute("pos",position),
+            nav.innerHTML = code;
+            page.insertBefore(nav,page.children[0]);    
+        }
 
     }
-    connectedCallback(activity,id,position,code){  //Created from html
+    connectedCallback(){  //Created from html
   
-			const page = document.getElementById(this.getAttribute("activity")).children[0];
-			 position = this.getAttribute("position");
-			 code = this.innerHTML;
-			 id = this.getAttribute("id");
+			const page = document.getElementById(this.getAttribute("activity"));
 			this.remove();
-
-			page.innerHTML += "<div id="+id+" class='navbar "+position+"'>"+code+"</div>";	
-				        if(position==="top"){
-				        	page.style["padding-top"] = " 60px ";
-				        }else if(position==="bottom"){
-				        	page.style["padding-bottom"] = " 60px ";
-				        }  
+            const nav = document.createElement("div");
+            nav.classList = "navbar";
+            nav.id = this.getAttribute("id");
+            nav.setAttribute("pos",this.getAttribute("position")),
+            nav.innerHTML = this.innerHTML;
+            page.insertBefore(nav,page.children[0]);	
+	         
     }
 
 }
 window.customElements.define('d-navbar', Navbar);
 
-class Activity extends  HTMLElement {
-    constructor(name,code) {
-        super();
-        this.innerHTML = `<div  class="activity" id="`+name+`"><div class="content"	>`+code+`</div></div>`;
+function activity(name,code){
+    this.name = name;
+    this.code = code;
+    this.launch = function(_config){
+        const _ACTIVITY = document.createElement("div");
+        _ACTIVITY.classList = "activity";
+        _ACTIVITY.setAttribute("id",this.name);
+        _ACTIVITY.innerHTML=`
+        <div class="content" >${this.code}</div>
+        `
+        document.body.appendChild(_ACTIVITY);
+        document.getElementById(this.name).style = `animation: _activity_${_config.animation} 0.25s;`;
+        activitiesHistory.push(this.name);
+        refreshRippleElements();
     }
-    connectedCallback(){  
-        
-    }
+   
 }
-window.customElements.define('d-activity', Activity);
-
 class FloatingButton extends  HTMLElement {
     constructor() {
         super();
@@ -114,13 +126,11 @@ function closeActivity(act,type){
 		error("Tried to close an activity which doesn't exist by the id: '"+act+"'. Tried while being on the activity '"+activitiesHistory[activitiesHistory.length-1]+"'");
 		return;
 	}
-
 	document.getElementById(act).style = " animation: _activity_"+type+" 0.25s;";
 	setTimeout(function(){ 
-		document.getElementById(act).parentElement.remove();
+		document.getElementById(act).remove();
 		activitiesHistory.pop();
-		console.log(activitiesHistory);
-	 }, 250);
+	 }, 230);
 }
 
 function refreshRippleElements(){

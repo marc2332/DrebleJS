@@ -1,6 +1,9 @@
-
+@font-face {
+    font-family: _main_font;
+    src: url(Inter-Regular.woff2);
+}
 *{
-  font-family: sans-serif !important;
+  font-family: _main_font !important;
   outline: 0 !important;
   -webkit-tap-highlight-color:  rgba(255, 255, 255, 0) !important;
   scroll-behavior: smooth;
@@ -21,10 +24,11 @@ body{
 	margin: 0;
 }
 .navbar{
+  margin: 0;
 	display: flex;
 	padding: 5px;
 	box-sizing: border-box;
-    position:absolute;
+    position:relative;
     overflow:hidden;
 	width: 100%;
 	background: var(--PrimaryColor);
@@ -32,11 +36,11 @@ body{
 	white-space: nowrap;
 }
 
-.navbar.top{
+.navbar[pos~="top"]{
 	top:0;
 	box-shadow: 0px 3px 10px rgba(0,0,0,0.3);
 }
-.navbar.bottom{
+.navbar[pos~="bottom"]{
 	bottom:0;
 	left: 0;
 	right: 0;
@@ -48,6 +52,7 @@ body{
 	color:white;
 	position: relative;
 	top:13px;
+  margin-left: 5px;
 }
 .navbar > .navbar-icon{
 	margin: 0;
@@ -102,13 +107,14 @@ body{
 
 }
 .content{
- 	width: 100%;
+ 	width: 95%;
+  left: 0;
 	height: auto;
 	overflow: auto;
 	display: block;
 	position:relative;
-	padding: 5px 0px;
-
+  margin: 10px;
+  right: 0;
 }
 
 @keyframes _activity_slide_up{
@@ -190,7 +196,7 @@ button:not(.disabled):not(.FloatingButton){
     border-radius: 2px;
     border: none;
     box-shadow: 0px 1px 4px rgba(0,0,0,0.1);
-    margin:3px;
+    margin:7px 2px;
     padding: 1px 11px;
 
 }
@@ -376,6 +382,7 @@ button.disabled:not(.FloatingButton){
 	background: white;
 	height: 100%;
 	width: 200px;
+  padding: 5px;
 }
 
 @keyframes _menu_right{

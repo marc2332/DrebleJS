@@ -1,0 +1,20 @@
+.navbar  navbar-title{
+	color:black;
+	font-size: 35px;
+	font-weight: bold;
+	margin: 7px;
+}
+.navbar {
+	text-align: center;
+	background: white;
+	background: gray;
+	height: 100px;
+	background: white;
+}
+.navbar[pos~="top"]{
+
+	box-shadow: none;
+}
+.navbar[pos~="bottom"]{
+	box-shadow: none;
+}
