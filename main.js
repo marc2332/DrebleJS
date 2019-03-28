@@ -12,7 +12,7 @@ const HomeAct = new activity({name:"Home",code:`
 
 	<p>Lorem ipsum dolor sit amet consectetur adipiscing elit ligula rutrum convallis aenean, egestas consequat massa sagittis purus tortor accumsan integer magnis class, faucibus enim quis orci facilisis per hendrerit vel velit proin. Dapibus suscipit leo aptent hac litora varius aliquet bibendum donec sollicitudin sed in viverra interdum tempor pharetra augue pellentesque, nibh duis quis sagittis odio gravida blandit class nulla dignissim mollis libero nisl consequat orci ante non. Curae sed vel proin duis suscipit hendrerit varius aliquet, pretium sagittis lectus fames nulla enim penatibus, habitasse malesuada eleifend rutrum nec ut nam.
 	</p>
-
+	<button onclick="onTest()">test</button>
 	<button onclick="onActivity2()">config</button>
 	<button onclick="onActivity3()">Counter</button>
 
@@ -74,6 +74,19 @@ function onActivity2(){
   })
 
 }
+function onTest(){
+	const testAct = new activity({name:"test",code:`
+	<d-navbar activity="test" position="top">
+			<navbar-title> Test <navbar-title>
+	</d-navbar>	
+	<button class="ripple" onclick="closeActivity('test','slide_down')">go back</button>
+	`});
+	testAct.launch({
+  	animation:"slide_up"
+  })
+
+}
+
 
 let _counter = 0;
 function onActivity3(){
@@ -86,7 +99,7 @@ function onActivity3(){
 		</d-navbar>
 
 		<p id="_counter">Pressed: `+_counter+`</p>
-		<button onclick="closeActivity('counter','slide_down')">Go back</button>
+		<button onclick="closeActivity('counter','slide_right')">Go back</button>
 		<button onclick="onActivity2()">config</button>
 		
 	`});
