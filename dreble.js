@@ -17,8 +17,7 @@ function load(obj){
     const _activity_ = document.createElement("div");
     _activity_.classList = "activity";
     _activity_.setAttribute("id",act.name);
-    _activity_.innerHTML=`
-    <div class="content" >${act.code}</div>`;
+    _activity_.innerHTML=act.code;
     document.body.appendChild(_activity_);
 	activitiesHistory.push(act.name);
 	refreshRippleElements();
@@ -43,14 +42,14 @@ class Navbar extends  HTMLElement {
         }
     }
     connectedCallback(){  //Created from html
-			const page = document.getElementById(this.getAttribute("activity"));
-			this.remove();
+			
             const nav = document.createElement("div");
             nav.classList = "navbar";
             nav.id = this.getAttribute("id");
             nav.setAttribute("pos",this.getAttribute("position")),
             nav.innerHTML = this.innerHTML;
-            page.insertBefore(nav,page.children[0]);	
+            this.parentElement.insertBefore(nav,this.parentElement.children[0]);	
+            this.remove();
     }
 }
 window.customElements.define('d-navbar', Navbar);
@@ -62,9 +61,7 @@ function activity(obj){
             const _ACTIVITY = document.createElement("div");
             _ACTIVITY.classList = "activity";
             _ACTIVITY.setAttribute("id",this.name);
-            _ACTIVITY.innerHTML=`
-            <div class="content" >${this.code}</div>
-            `
+            _ACTIVITY.innerHTML=this.code
             document.body.appendChild(_ACTIVITY);
             document.getElementById(this.name).style = `animation: _activity_${_config.animation} 0.25s;`;
             activitiesHistory.push(this.name);
@@ -95,14 +92,13 @@ class FloatingButton extends  HTMLElement {
         }
         if(this.classList.contains("disabled")=== false) button.setAttribute("onclick",this.getAttribute("onclick"));
         
-        this.parentElement.parentElement.appendChild(button);    
+        this.parentElement.insertBefore(button,this.parentElement.children[0]);       
         this.remove();
-        console.log(this);   
         button.addEventListener('click', newRipple); 
          
    }
 }
-window.customElements.define('custom-floating-button', FloatingButton);
+window.customElements.define('d-fbtn', FloatingButton);
 
 
 
@@ -124,7 +120,7 @@ function closeActivity(act,type){
 	setTimeout(function(){ 
 		document.getElementById(act).remove();
 		activitiesHistory.pop();
-	 }, 230);
+	 }, 220);
 }
 
 function refreshRippleElements(){
@@ -225,7 +221,7 @@ function newDialog(activity,code){
 	const dialog_id = Math.random();
 	dialog_window.classList = "dialog_window";
 	background.classList = "dialog_background";
-	background.setAttribute("onclick","closeDialog(this)")
+	background.setAttribute("onclick",`closeDialog(this)`)
 	dialog.classList = "dialog";
 	dialog.setAttribute("id",dialog_id); //Assigns a random ID
 	dialog_window.innerHTML += code;
