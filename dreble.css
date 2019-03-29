@@ -392,7 +392,7 @@ button.disabled:not(.FloatingButton){
   width: 100%;
   position: relative;
   position: block;
-  height: 40px;
+  height: 50px;
   background: transparent;
   box-shadow: none;
   color: black;
