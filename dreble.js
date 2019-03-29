@@ -106,7 +106,7 @@ function goActivity(act,type){
 
 	document.body.appendChild(act);
 	//document.getElementById(act.children[0].id).classList.add("on_opening");
-	document.getElementById(act.children[0].id).style = "animation: _activity_"+type+" 0.25s;";
+	document.getElementById(act.children[0].id).style = "animation: _activity_"+type+" 0.4s;";
 	activitiesHistory.push(act.children[0].id);
 	console.log(activitiesHistory);
 	refreshRippleElements();
@@ -116,11 +116,11 @@ function closeActivity(act,type){
 		error("Tried to close an activity which doesn't exist by the id: '"+act+"'. Tried while being on the activity '"+activitiesHistory[activitiesHistory.length-1]+"'");
 		return;
 	}
-	document.getElementById(act).style = " animation: _activity_"+type+" 0.25s;";
+	document.getElementById(act).style = " animation: _activity_"+type+" 0.4s;";
 	setTimeout(function(){ 
 		document.getElementById(act).remove();
 		activitiesHistory.pop();
-	 }, 220);
+	 }, 350);
 }
 
 function refreshRippleElements(){

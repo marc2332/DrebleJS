@@ -39,7 +39,6 @@
     opacity: 0;
     background: transparent;
 }
-
 body{
 	padding: 0;
 	margin: 0;
@@ -49,14 +48,13 @@ body{
 	display: flex;
 	padding: 5px;
 	box-sizing: border-box;
-    position:relative;
-    overflow:hidden;
+  position:relative;
+  overflow:hidden;
 	width: 100%;
 	background: var(--PrimaryColor);
 	height:55px;	
 	white-space: nowrap;
 }
-
 .navbar[pos~="top"]{
 	top:0;
 	box-shadow: 0px 3px 10px rgba(0,0,0,0.3);
@@ -129,7 +127,6 @@ body{
   margin: 10px;
   right: 0;
 }
-
 @keyframes _activity_slide_up{
   from{
     opacity: 0.3  ;
@@ -140,7 +137,6 @@ body{
     top:0px;
   }
 }
-
 @keyframes _activity_slide_left{
   from{
     opacity: 0.3  ;
@@ -151,8 +147,6 @@ body{
     left:0px;
   }
 }
-
-
 @keyframes _activity_slide_down{
   from{
   	 opacity: 1;
@@ -163,7 +157,6 @@ body{
     top:100px;
   }
 }
-
 @keyframes _activity_slide_right{
   from{
     opacity: 1  ;
@@ -186,20 +179,19 @@ button {
     overflow: hidden;
     position: relative;
     user-select: none;
-
-  }
+}
 button .ripple {
-     border-radius: 100%;
-      background-color: var(--RippleEffect);
-       position: absolute;
-       transform: scale(0);
-       animation: _button_ripple 0.3s linear;
-       opacity: 10;
-     }
+    border-radius: 100%;
+    background-color: var(--RippleEffect);
+    position: absolute;
+    transform: scale(0);
+    animation: _button_ripple 0.3s linear;
+    opacity: 10;
+}
 @keyframes _button_ripple {
- 75% { 
+  75% { 
   transform: scale(4); opacity: 0.8;
-   } 
+  } 
   100%{
   	 transform: scale(4); opacity: 0;
   }
@@ -227,17 +219,14 @@ button:hover:not(.disabled):not(.FloatingButton){
     background: var(--LightPrimaryColor);
     box-shadow: 0px 3px 6px rgba(0,0,0,0.20);
     cursor: pointer;
-     
 }
 button:active:not(.disabled):not(.FloatingButton){
     
     transition: 0.1s;
     background: var(--LightPrimaryColor);
     box-shadow: 0px 3px 6px rgba(0,0,0,0.35);
-    cursor: pointer;
-     
+    cursor: pointer;  
 }
-
 button.disabled:not(.FloatingButton){
     height: auto;
     width: auto;
@@ -247,7 +236,6 @@ button.disabled:not(.FloatingButton){
     box-shadow: 0px 1px 4px rgba(0,0,0,0.25);
     margin:0px 5px;
 }
-
 @keyframes _create_fbtn{
   from{
       transform: scale(0.7);
@@ -256,7 +244,6 @@ button.disabled:not(.FloatingButton){
     transform: scale(1);
   }
 }
-
 .FloatingButton{
 		animation: _create_fbtn linear 0.2s;
     transition: 0.2s;
@@ -301,10 +288,9 @@ button.disabled:not(.FloatingButton){
 }
 .FloatingButton[pos~="center"]{
     left:45%;
+    right: 50%;
     
 }
-
-
 .FloatingButton.small{
     height: 45px;
     width:45px;
@@ -370,8 +356,6 @@ button.disabled:not(.FloatingButton){
 
   }
 }
-
-
 .menu{
 	top: 0;
 	left: 0;
@@ -380,10 +364,10 @@ button.disabled:not(.FloatingButton){
   	overflow:none;
 }
 .menu.hiding > .menu_window{
-  	animation:_menu_left 0.2s;
+  	animation:_menu_left 0.35s;
 }
 .menu.hiding > .menu_background{
-  	transition: 0.2s;
+  	transition: 0.3s;
   	opacity:0.3;
 }
 .menu > .menu_background{
@@ -394,7 +378,6 @@ button.disabled:not(.FloatingButton){
 	width: 100%;
   	overflow:none;
 	background: rgba(0,0,0,0.7);
-
 }
 .menu > .menu_window{
 	animation: _menu_right linear 0.15s;
@@ -406,7 +389,6 @@ button.disabled:not(.FloatingButton){
 	width: 200px;
   padding: 5px;
 }
-
 @keyframes _menu_right{
   from{
       left: -200px;
@@ -426,10 +408,6 @@ button.disabled:not(.FloatingButton){
     left: -270px;
     opacity: 0;
   }
-}
-
-@media only screen and (max-device-width : 640px) {
-	
 }
 div.card{
   padding: 10px;
