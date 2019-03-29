@@ -70,7 +70,7 @@ body{
 	font-size: 20px;
 	color:white;
 	position: relative;
-	top:13px;
+	top:11px;
   margin-left: 5px;
 }
 .navbar > .navbar-icon{
@@ -164,7 +164,7 @@ body{
   }
   to{
     opacity: 0;
-    left:40%;
+    left:50%;
   }
 }
 @keyframes _activity_expand{

@@ -113,6 +113,7 @@ function onActivity3(){
 	const counter = new activity({name:"counter",code:`
 
 		<d-navbar position="top">
+			<img class="navbar-icon" onclick="closeActivity('counter','slide_right')" src="arrow_back.svg"></img>
 			<navbar-title> Top bar <navbar-title>
 		</d-navbar>
 		<d-content>
