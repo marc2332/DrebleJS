@@ -99,18 +99,6 @@ class FloatingButton extends  HTMLElement {
    }
 }
 window.customElements.define('d-fbtn', FloatingButton);
-
-
-
-function goActivity(act,type){
-
-	document.body.appendChild(act);
-	//document.getElementById(act.children[0].id).classList.add("on_opening");
-	document.getElementById(act.children[0].id).style = "animation: _activity_"+type+" 0.4s;";
-	activitiesHistory.push(act.children[0].id);
-	console.log(activitiesHistory);
-	refreshRippleElements();
-}
 function closeActivity(act,type){
 	if(document.getElementById(act)===null) {
 		error("Tried to close an activity which doesn't exist by the id: '"+act+"'. Tried while being on the activity '"+activitiesHistory[activitiesHistory.length-1]+"'");
@@ -129,17 +117,15 @@ const buttons = document.getElementsByClassName('ripple');
  Array.prototype.forEach.call(buttons, function (b) {
  	b.addEventListener('click', newRipple); }); 
 }
- 
-
  function newRipple (e) { 
-	 	var circle = document.createElement('div'); 
-	 	this.appendChild(circle);
-	  var d = Math.max(this.clientWidth, this.clientHeight); 
-	  circle.style.width = circle.style.height = d + 'px'; 
-	  var rect = this.getBoundingClientRect(); 
-	  circle.style.left=e.clientX-rect.left-d/2+'px'; 
-	  circle.style.top=e.clientY-rect.top-d/2+'px';
-	  circle.classList = "ripple circle_ripple";
+	 const circle = document.createElement('div'); 
+	 this.appendChild(circle);
+	 const d = Math.max(this.clientWidth, this.clientHeight); 
+	 circle.style.width = circle.style.height = d + 'px'; 
+	 const rect = this.getBoundingClientRect(); 
+	 circle.style.left=e.clientX-rect.left-d/2+'px'; 
+	 circle.style.top=e.clientY-rect.top-d/2+'px';
+	 circle.classList = "ripple circle_ripple";
  };
 
 function error(message){
@@ -233,16 +219,16 @@ function newDialog(activity,code){
 }
 function closeDialog(me){
 	document.getElementById(me.getAttribute("toclose")).remove();
-	
+
 }
 
 
-function Menu(activity,code){
-	const page = document.getElementById(activity);
+function Menu(id,code){
+    const menu_id = id+"_appDrawer";
+	const page = document.getElementById(activitiesHistory[activitiesHistory.length-1]);
 	const menu =document.createElement("div");
 	const background = document.createElement("div");
 	const menu_window = document.createElement("div");
-	const menu_id = Math.random();
 	background.classList = "menu_background";
 	background.setAttribute("onclick","closeMenu(this)")
 	menu.classList = "menu";
@@ -254,15 +240,19 @@ function Menu(activity,code){
 	menu.appendChild(background);
 	menu.appendChild(menu_window);
 	page.appendChild(menu);
-
+    refreshRippleElements();
 }
-
-function closeMenu(me){
-	const menu = document.getElementById(me.getAttribute("toclose"));
-	menu.classList.add("hiding");
-
+function closeMenu(act){
+    let me;
+    if(typeof act =="object"){
+         me = document.getElementById(act.getAttribute("toclose"));
+    }else{
+         me = document.getElementById(act+"_appDrawer");
+    }
+    console.log(me);
+    me.classList.add("hiding");
 	setTimeout(function(){ 
-		menu.remove();
+		me.remove();
 	 }, 180);
 	
 }
@@ -270,7 +260,7 @@ function FloatingButton2(obj){
   	const _fbtn = document.createElement("button");
   	_fbtn.setAttribute("size",obj.size);
   	_fbtn.setAttribute("src",obj.icon);
-  _fbtn.classList = "FloatingButton";
+    _fbtn.classList = "FloatingButton";
   	_fbtn.setAttribute("pos",obj.position);
   	document.getElementById(obj.activity).appendChild(_fbtn);
   

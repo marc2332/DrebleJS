@@ -32,15 +32,17 @@ function createDialog1(){
 function createAppDrawer1(){
 	new Menu("config",`
 		<p>Side menu!</p>
-		<button onclick="closeActivity('config','slide_right')">close activity</button>
+		<button class="ripple" onclick="closeActivity('config','slide_right')">close activity</button>
 		`);
 }
 function createAppDrawer2(){
 	new Menu("Home",`
-		<p>Hello!</p>
-		<div class="card">
-				<button onclick="onActivity3()">Counter activity</button>
-		</div>
+		<d-list-appdrawer>
+				<button class="ripple" onclick="onActivity3()">Counter activity</button>
+				<button class="ripple" onclick="closeMenu('Home')">close</button>
+				<button class="ripple">Testing</button>
+				<button class="ripple">Testing</button>
+		</d-list-appdrawer>
 		`);
 }
 function Main(){

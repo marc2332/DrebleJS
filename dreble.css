@@ -221,12 +221,12 @@ button:hover:not(.disabled):not(.FloatingButton){
     cursor: pointer;
 }
 button:active:not(.disabled):not(.FloatingButton){
-    
     transition: 0.1s;
     background: var(--LightPrimaryColor);
     box-shadow: 0px 3px 6px rgba(0,0,0,0.35);
     cursor: pointer;  
 }
+
 button.disabled:not(.FloatingButton){
     height: auto;
     width: auto;
@@ -311,8 +311,6 @@ button.disabled:not(.FloatingButton){
 	left: 50%;
 	transform: translate(-50%, -50%)
 }
-
-
 .dialog > .dialog_background{
 	position: fixed;
 	left: 0;
@@ -387,7 +385,26 @@ button.disabled:not(.FloatingButton){
 	background: white;
 	height: 100%;
 	width: 200px;
-  padding: 5px;
+}
+.menu > .menu_window d-list-appdrawer button{
+  margin: 0;
+  padding-left: 12px;
+  width: 100%;
+  position: relative;
+  position: block;
+  height: 40px;
+  background: transparent;
+  box-shadow: none;
+  color: black;
+  text-align: left;
+}
+.menu > .menu_window  button:hover{
+  background: lightgray;
+  box-shadow: none;
+}
+.menu > .menu_window  button:active{
+  background: lightgray;
+  box-shadow: none;
 }
 @keyframes _menu_right{
   from{
@@ -405,7 +422,7 @@ button.disabled:not(.FloatingButton){
      opacity: 1;
   }
   to{
-    left: -270px;
+    left: -265px;
     opacity: 0;
   }
 }
