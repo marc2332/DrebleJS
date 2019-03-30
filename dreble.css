@@ -7,6 +7,7 @@
   outline: 0 !important;
   -webkit-tap-highlight-color:  rgba(255, 255, 255, 0) !important;
   scroll-behavior: smooth;
+  user-select: none;
 }
 :root{
     --PrimaryColor: #126DFF;
@@ -46,7 +47,7 @@ body{
 button {
     overflow: hidden;
     position: relative;
-    user-select: none;
+    
 }
 button .ripple {
     border-radius: 100%;
