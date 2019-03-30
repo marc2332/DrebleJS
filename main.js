@@ -1,8 +1,7 @@
 
-
 const HomeAct = new activity({name:"Home",code:`
 
-	<d-navbar activity="Home" position="top">
+	<d-navbar position="top">
 			<img class="navbar-icon" onclick="createAppDrawer2()" src="menu.svg"></img>
 			<navbar-title> Main Activity </navbar-title>
 	</d-navbar>
@@ -19,6 +18,7 @@ const HomeAct = new activity({name:"Home",code:`
 					<button onclick="onActivity2()">config</button>
 					<button onclick="onActivity3()">Counter</button>
 			</div>
+
 	</d-content>
 
 	`});
@@ -58,7 +58,7 @@ function Main(){
     setTheme("Purple");	
 	load({
 		home: HomeAct,
-		style:"dreble.css"
+		style:"default"
 	});
 }
 function onActivity2(){
@@ -69,7 +69,7 @@ function onActivity2(){
 					<img class="navbar-icon" onclick="createAppDrawer1()" src="menu.svg"></img>
 					<navbar-title> Fixed bar <navbar-title>
 			</d-navbar>
-	
+			
 	
 			<d-content>
 
@@ -92,16 +92,27 @@ function onActivity2(){
 			</d-content>
 	`});
 	configAct.launch({
-  	animation:"expand"
+  	animation:"opacity_off"
   })
 
 }
+var testAct;
 function onTest(){
-	const testAct = new activity({name:"test",code:`
-	<d-navbar position="top">
-			<navbar-title> Test <navbar-title>
+	 testAct = new activity({name:"test",code:`
+	<d-navbar position="top" type="tabs">
+			<img class="navbar-icon" onclick="closeActivity('test','slide_right')" src="arrow_back.svg"></img>
+			<d-tabs onclick="testAct.content('tab1')">Tab1</d-tabs>
+			<d-tabs onclick="testAct.content('tab2')">Tab2</d-tabs>
+			<d-tabs onclick="testAct.content('tab3')">Tab3</d-tabs>
+			<d-tabs onclick="testAct.content('tab4')">Tab4</d-tabs>
+			<d-tabs onclick="testAct.content('tab5')">Tab5</d-tabs>
+
 	</d-navbar>	
-	<button class="ripple" onclick="closeActivity('test','slide_down')">go back</button>
+	<d-content>
+		<div class="card">
+			<button class="ripple" onclick="closeActivity('test','slide_down')">go back</button>
+		</div>
+	<d-content>
 	`});
 	testAct.launch({
   	animation:"slide_up"
@@ -120,7 +131,9 @@ function onActivity3(){
 		</d-navbar>
 		<d-content>
 				
-				<p id="_counter">Pressed: `+_counter+`</p>
+				<div class="card" content="center">
+						<p id="_counter">Pressed: `+_counter+`</p>
+				</div>
 				<button onclick="closeActivity('counter','slide_right')">Go back</button>
 				<button onclick="onActivity2()">config</button>
 				<p>Lorem ipsum dolor sit amet consectetur adipiscing elit ligula rutrum convallis aenean, egestas consequat massa sagittis purus tortor accumsan integer magnis class, faucibus enim quis orci facilisis per hendrerit vel velit proin. Dapibus suscipit leo aptent hac litora varius aliquet bibendum donec sollicitudin sed in viverra interdum tempor pharetra augue pellentesque, nibh duis quis sagittis odio gravida blandit class nulla dignissim mollis libero nisl consequat orci ante non. Curae sed vel proin duis suscipit hendrerit varius aliquet, pretium sagittis lectus fames nulla enim penatibus, habitasse malesuada eleifend rutrum nec ut nam.</p>
@@ -134,15 +147,6 @@ function onActivity3(){
   counter.launch({
   	animation:"slide_left"
   })
-	//goActivity(counter,"slide_up");
-  /*const floating1 = new FloatingButton2({
-  	icon:"plus.svg",
-  	position:"top center",
-  	size:"normal",
-  	onclick:"console.log",
-  	activity:"counter",
-	
-	})*/
 }
 
 

@@ -1,3 +1,15 @@
+/*
+·······························
+
+MIT License
+
+Copyright (c) 2019 DrebleJS
+
+Full license > https://github.com/marc2332/DrebleJS/blob/master/dreble.js
+
+·······························
+*/
+
 let activitiesHistory = [];
 let i = 0;
 window.onload = function(){
@@ -8,9 +20,10 @@ window.onload = function(){
 }
 window.onerror = function(){
 	document.body.innerHTML = `
-	<p style=" font-family: _main_font !important; left:50%; transform: translate(-50%, -45%); top:50%; position:fixed;">An error ocurred.</p>
+	<p style=" font-family: _main_font !important; left:50%; transform: translate(-50%, -45%); top:50%; position:fixed;">An error ocurred!</p>
 	`;
 }
+
 function load(obj){
 	
 	const act = obj['home'];
@@ -21,43 +34,19 @@ function load(obj){
     document.body.appendChild(_activity_);
 	activitiesHistory.push(act.name);
 	refreshRippleElements();
-     const new_style = document.createElement("link");
-    new_style.setAttribute("href",obj.style);
-    new_style.setAttribute("rel","stylesheet");
-    document.getElementById("dreble_themes").appendChild(new_style);
-
+    if(obj["style"]!="default"){
+         const new_style = document.createElement("link");
+        new_style.setAttribute("href",obj.style);
+        new_style.setAttribute("rel","stylesheet");
+        document.getElementById("dreble_themes").appendChild(new_style);
+    }
 
 }
-class Navbar extends  HTMLElement {
-    constructor(activity,id,position,code) {
-    	super();
-    	if(activity!=undefined){ //Created from JavaScript
-    	const page = document.getElementById(activity);
-    	const nav = document.createElement("div");
-            nav.classList = "navbar";
-            nav.id = id;
-            nav.setAttribute("pos",position),
-            nav.innerHTML = code;
-            page.insertBefore(nav,page.children[0]);    
-        }
-    }
-    connectedCallback(){  //Created from html
-			
-            const nav = document.createElement("div");
-            nav.classList = "navbar";
-            nav.id = this.getAttribute("id");
-            nav.setAttribute("pos",this.getAttribute("position")),
-            nav.innerHTML = this.innerHTML;
-            this.parentElement.insertBefore(nav,this.parentElement.children[0]);	
-            this.remove();
-    }
-}
-window.customElements.define('d-navbar', Navbar);
+
 function activity(obj){
     this.name = obj.name;
     this.code = obj.code;
     this.launch = function(_config){
-
             const _ACTIVITY = document.createElement("div");
             _ACTIVITY.classList = "activity";
             _ACTIVITY.setAttribute("id",this.name);
@@ -66,6 +55,9 @@ function activity(obj){
             document.getElementById(this.name).style = `animation: _activity_${_config.animation} 0.25s;`;
             activitiesHistory.push(this.name);
             refreshRippleElements();
+    };
+    this.content = function(content){
+        document.getElementById(this.name).querySelector("d-content").innerHTML = content;
     }
    
 }
@@ -99,6 +91,23 @@ class FloatingButton extends  HTMLElement {
    }
 }
 window.customElements.define('d-fbtn', FloatingButton);
+class NavBarTab extends  HTMLElement {
+    constructor() {
+        super();
+    } 
+    connectedCallback(){
+        this.addEventListener("click",function(){
+            console.log(this.parentElement.children);
+            for(i=0;i<this.parentElement.children.length;i++){
+                const element = this.parentElement.children[i];
+                element.classList.remove("selected");
+            }
+            this.classList = "selected"
+        })
+         
+   }
+}
+window.customElements.define('d-tabs', NavBarTab);
 function closeActivity(act,type){
 	if(document.getElementById(act)===null) {
 		error("Tried to close an activity which doesn't exist by the id: '"+act+"'. Tried while being on the activity '"+activitiesHistory[activitiesHistory.length-1]+"'");
