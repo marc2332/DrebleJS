@@ -58,6 +58,18 @@ function activity(obj){
     };
     this.content = function(content){
         document.getElementById(this.name).querySelector("d-content").innerHTML = content;
+    };
+    this.close = function(animation){
+        if(document.getElementById(this.name)===null) {
+            error("Tried to close an activity which doesn't exist by the id: '"+act+"'. Tried while being on the activity '"+activitiesHistory[activitiesHistory.length-1]+"'");
+            return;
+        }
+        document.getElementById(this.name).style = ` animation: _activity_${animation} 0.4s;`;
+        const me = this.name
+        setTimeout(function(){ 
+            document.getElementById(me).remove();
+            activitiesHistory.pop();
+     }, 300);
     }
    
 }
@@ -107,16 +119,13 @@ class NavBarTab extends  HTMLElement {
    }
 }
 window.customElements.define('d-tabs', NavBarTab);
-function closeActivity(act,type){
-	if(document.getElementById(act)===null) {
-		error("Tried to close an activity which doesn't exist by the id: '"+act+"'. Tried while being on the activity '"+activitiesHistory[activitiesHistory.length-1]+"'");
-		return;
-	}
+function closeActivity(type){
+    const act = activitiesHistory[activitiesHistory.length-1];
 	document.getElementById(act).style = " animation: _activity_"+type+" 0.4s;";
 	setTimeout(function(){ 
 		document.getElementById(act).remove();
 		activitiesHistory.pop();
-	 }, 350);
+	 }, 370);
 }
 
 function refreshRippleElements(){

@@ -56,6 +56,14 @@ button .ripple {
     animation: _button_ripple 0.3s linear;
     opacity: 10;
 }
+d-tabs .ripple {
+    border-radius: 100%;
+    background-color: var(--RippleEffect);
+    position: absolute;
+    transform: scale(0);
+    animation: _button_ripple 0.3s linear;
+    opacity: 10;
+}
 @keyframes _button_ripple {
   75% { 
   transform: scale(4); opacity: 0.8;
