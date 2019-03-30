@@ -97,7 +97,6 @@ class NavBarTab extends  HTMLElement {
     } 
     connectedCallback(){
         this.addEventListener("click",function(){
-            console.log(this.parentElement.children);
             for(i=0;i<this.parentElement.children.length;i++){
                 const element = this.parentElement.children[i];
                 element.classList.remove("selected");

@@ -66,7 +66,7 @@ function onActivity2(){
 
 			
 			<d-navbar position="top">
-					<img class="navbar-icon" onclick="createAppDrawer1()" src="menu.svg"></img>
+					<img class="navbar-icon" onclick="closeActivity('config','expand_off')" src="arrow_back.svg"></img>
 					<navbar-title> Fixed bar <navbar-title>
 			</d-navbar>
 			
@@ -80,7 +80,7 @@ function onActivity2(){
 					<div class="card">
 					<p>Configuration Page</p>
 						<button class="ripple" >example</button>
-					<button class="ripple" onclick="closeActivity('config','slide_right')">back</button>
+					<button class="ripple" onclick="closeActivity('config','expand_off')">back</button>
 					<p>Lorem ipsum dolor sit amet consectetur adipiscing elit ligula rutrum convallis aenean, egestas consequat massa sagittis purus tortor accumsan integer magnis class, faucibus enim quis orci facilisis per hendrerit vel velit proin. Dapibus suscipit leo aptent hac litora varius aliquet bibendum donec sollicitudin sed in viverra interdum tempor pharetra augue pellentesque, nibh duis quis sagittis odio gravida blandit class nulla dignissim mollis libero nisl consequat orci ante non. Curae sed vel proin duis suscipit hendrerit varius aliquet, pretium sagittis lectus fames nulla enim penatibus, habitasse malesuada eleifend rutrum nec ut nam.</p>
 					<p>Lorem ipsum dolor sit amet consectetur adipiscing elit ligula rutrum convallis aenean, egestas consequat massa sagittis purus tortor accumsan integer magnis class, faucibus enim quis orci facilisis per hendrerit vel velit proin. Dapibus suscipit leo aptent hac litora varius aliquet bibendum donec sollicitudin sed in viverra interdum tempor pharetra augue pellentesque, nibh duis quis sagittis odio gravida blandit class nulla dignissim mollis libero nisl consequat orci ante non. Curae sed vel proin duis suscipit hendrerit varius aliquet, pretium sagittis lectus fames nulla enim penatibus, habitasse malesuada eleifend rutrum nec ut nam.</p>
 					
@@ -92,7 +92,7 @@ function onActivity2(){
 			</d-content>
 	`});
 	configAct.launch({
-  	animation:"opacity_off"
+  	animation:"expand_in"
   })
 
 }
@@ -100,18 +100,23 @@ var testAct;
 function onTest(){
 	 testAct = new activity({name:"test",code:`
 	<d-navbar position="top" type="tabs">
-			<img class="navbar-icon" onclick="closeActivity('test','slide_right')" src="arrow_back.svg"></img>
-			<d-tabs onclick="testAct.content('tab1')">Tab1</d-tabs>
+			<d-tabs onclick="closeActivity('test','slide_down')">return</d-tabs>
 			<d-tabs onclick="testAct.content('tab2')">Tab2</d-tabs>
 			<d-tabs onclick="testAct.content('tab3')">Tab3</d-tabs>
 			<d-tabs onclick="testAct.content('tab4')">Tab4</d-tabs>
 			<d-tabs onclick="testAct.content('tab5')">Tab5</d-tabs>
-
 	</d-navbar>	
+	
 	<d-content>
 		<div class="card">
+			<p>Tap on some tab!</p>
 			<button class="ripple" onclick="closeActivity('test','slide_down')">go back</button>
 		</div>
+		<p>Lorem ipsum dolor sit amet consectetur adipiscing elit ligula rutrum convallis aenean, egestas consequat massa sagittis purus tortor accumsan integer magnis class, faucibus enim quis orci facilisis per hendrerit vel velit proin. Dapibus suscipit leo aptent hac litora varius aliquet bibendum donec sollicitudin sed in viverra interdum tempor pharetra augue pellentesque, nibh duis quis sagittis odio gravida blandit class nulla dignissim mollis libero nisl consequat orci ante non. Curae sed vel proin duis suscipit hendrerit varius aliquet, pretium sagittis lectus fames nulla enim penatibus, habitasse malesuada eleifend rutrum nec ut nam.</p>
+		<p>Lorem ipsum dolor sit amet consectetur adipiscing elit ligula rutrum convallis aenean, egestas consequat massa sagittis purus tortor accumsan integer magnis class, faucibus enim quis orci facilisis per hendrerit vel velit proin. Dapibus suscipit leo aptent hac litora varius aliquet bibendum donec sollicitudin sed in viverra interdum tempor pharetra augue pellentesque, nibh duis quis sagittis odio gravida blandit class nulla dignissim mollis libero nisl consequat orci ante non. Curae sed vel proin duis suscipit hendrerit varius aliquet, pretium sagittis lectus fames nulla enim penatibus, habitasse malesuada eleifend rutrum nec ut nam.</p>
+		<p>Lorem ipsum dolor sit amet consectetur adipiscing elit ligula rutrum convallis aenean, egestas consequat massa sagittis purus tortor accumsan integer magnis class, faucibus enim quis orci facilisis per hendrerit vel velit proin. Dapibus suscipit leo aptent hac litora varius aliquet bibendum donec sollicitudin sed in viverra interdum tempor pharetra augue pellentesque, nibh duis quis sagittis odio gravida blandit class nulla dignissim mollis libero nisl consequat orci ante non. Curae sed vel proin duis suscipit hendrerit varius aliquet, pretium sagittis lectus fames nulla enim penatibus, habitasse malesuada eleifend rutrum nec ut nam.</p>
+					
+
 	<d-content>
 	`});
 	testAct.launch({

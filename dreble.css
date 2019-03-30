@@ -182,16 +182,11 @@ d-navbar{
 	background: var(--PrimaryColor);
 	height:55px;	
 }
-d-navbar[pos~="top"]{
+d-navbar[position~="top"]{
 	top:0;
 	box-shadow: 0px 3px 10px rgba(0,0,0,0.3);
 }
-d-navbar[pos~="bottom"]{
-	bottom:0;
-	left: 0;
-	right: 0;
-	box-shadow: 0px -5px 8px rgba(0,0,0,0.3);
-}
+
 d-navbar > navbar-title{
 	display: flex;
 	font-size: 20px;
@@ -207,7 +202,7 @@ d-navbar d-tabs{
   position: relative;
   overflow: auto;
   margin: none;
-  height: 97%;
+  height: 95%;
   min-width: 30px;
   padding: 0px 30px;
   color: white;
@@ -217,15 +212,13 @@ d-navbar d-tabs{
   text-align: center;
   vertical-align: middle;
   line-height: 52px;
-  border-bottom: 4px solid transparent;
+  border-bottom: 5px solid transparent;
   cursor: pointer;
 }
 d-navbar d-tabs.selected{
   transition: 0.1s;
-  border-bottom: 4px solid white;
+  border-bottom: 5px solid white;
 }
-
-
 d-navbar > .navbar-icon{
 	margin: 0;
 	position: relative;
@@ -315,12 +308,24 @@ d-navbar::-khtml-scrollbar {display:none;}
     left:50%;
   }
 }
-@keyframes _activity_expand{
+@keyframes _activity_expand_in{
   from{
-    transform: scale(0.85);
+    transform: scale(0.8);
+    opacity: 0;
   }
   to{
     transform: scale(1);
+    opacity: 1;
+  }
+}
+@keyframes _activity_expand_off{
+  from{
+    transform: scale(1);
+    opacity: 1;
+  }
+  to{
+    transform: scale(0.8);
+    opacity: 0;
   }
 }
 @keyframes _activity_opacity_off{
