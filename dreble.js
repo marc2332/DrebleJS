@@ -5,7 +5,7 @@ MIT License
 
 Copyright (c) 2019 DrebleJS
 
-Full license > https://github.com/marc2332/DrebleJS/blob/master/dreble.js
+Full license > https://github.com/marc2332/DrebleJS/blob/master/LICENSE.md
 
 ·······························
 */
@@ -13,19 +13,9 @@ Full license > https://github.com/marc2332/DrebleJS/blob/master/dreble.js
 let activitiesHistory = [];
 let i = 0;
 window.onload = function(){
-	const style= document.createElement('script');
-  style.innerHTML = "";
-    document.body.appendChild(style); 
-	Main();
+	//
 }
-window.onerror = function(){
-	document.body.innerHTML = `
-	<p style=" font-family: _main_font !important; left:50%; transform: translate(-50%, -45%); top:50%; position:fixed;">An error ocurred!</p>
-	`;
-}
-
 function load(obj){
-	
 	const act = obj['home'];
     const _activity_ = document.createElement("div");
     _activity_.classList = "activity";
@@ -34,13 +24,6 @@ function load(obj){
     document.body.appendChild(_activity_);
 	activitiesHistory.push(act.name);
 	refreshRippleElements();
-    if(obj["style"]!="default"){
-         const new_style = document.createElement("link");
-        new_style.setAttribute("href",obj.style);
-        new_style.setAttribute("rel","stylesheet");
-        document.getElementById("dreble_themes").appendChild(new_style);
-    }
-
 }
 
 function activity(obj){

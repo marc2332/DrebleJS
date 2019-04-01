@@ -191,6 +191,9 @@ d-navbar{
 	background: var(--PrimaryColor);
 	height:55px;	
 }
+d-navbar[content~="center"]{
+  justify-content: center;
+}
 d-navbar[position~="top"]{
 	top:0;
 	box-shadow: 0px 3px 10px rgba(0,0,0,0.3);
@@ -228,6 +231,7 @@ d-navbar d-tabs.selected{
   transition: 0.1s;
   border-bottom: 5px solid white;
 }
+
 d-navbar > .navbar-icon{
 	margin: 0;
 	position: relative;

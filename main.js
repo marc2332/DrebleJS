@@ -45,8 +45,7 @@ function createAppDrawer2(){
 		</d-list-appdrawer>
 		`);
 }
-function Main(){
-	colors = {
+	const colors = {
         Name : 'purple',
         Primary : 'purple',
         Light: 'lightpink',
@@ -57,10 +56,9 @@ function Main(){
     newTheme(colors);
     setTheme("Purple");	
 	load({
-		home: HomeAct,
-		style:"default"
+		home: HomeAct
 	});
-}
+
 function onActivity2(){
 	const configAct = new activity({name:"config",code:`
 
@@ -69,10 +67,7 @@ function onActivity2(){
 					<img class="navbar-icon" onclick="closeActivity('expand_off')" src="arrow_back.svg"></img>
 					<navbar-title> Fixed bar <navbar-title>
 			</d-navbar>
-			
-	
 			<d-content>
-
 					<d-navbar position="top">
 							<img class="navbar-icon" onclick="createAppDrawer1()" src="menu.svg"></img>
 							<navbar-title> Not fixed bar <navbar-title>
@@ -94,12 +89,11 @@ function onActivity2(){
 	configAct.launch({
   	animation:"expand_in"
   })
-
 }
-var testAct;
+let testAct;
 function onTest(){
 	 testAct = new activity({name:"test",code:`
-	<d-navbar position="top" type="tabs">
+	<d-navbar position="top" content="center">
 			<d-tabs class="ripple" onclick="testAct.close('slide_down')">return</d-tabs>
 			<d-tabs class="ripple" onclick="testAct.content('tab2')">Tab2</d-tabs>
 			<d-tabs class="ripple" onclick="testAct.content('tab3')">Tab3</d-tabs>
