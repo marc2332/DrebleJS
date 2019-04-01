@@ -415,7 +415,7 @@ d-navbar::-khtml-scrollbar {display:none;}
 }
 .menu.hiding > .menu_background{
   	transition: 0.3s;
-  	opacity:0.3;
+  	opacity:0;
 }
 .menu > .menu_background{
   	position: fixed;

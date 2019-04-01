@@ -253,7 +253,7 @@ function closeMenu(act){
     me.classList.add("hiding");
 	setTimeout(function(){ 
 		me.remove();
-	 }, 180);
+	 }, 290);
 	
 }
 function FloatingButton2(obj){ 
