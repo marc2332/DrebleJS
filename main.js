@@ -94,11 +94,14 @@ let testAct;
 function onTest(){
 	 testAct = new activity({name:"test",code:`
 	<d-navbar position="top" content="center">
+			
+			
 			<d-tabs class="ripple" onclick="testAct.close('slide_down')">return</d-tabs>
 			<d-tabs class="ripple" onclick="testAct.content('tab2')">Tab2</d-tabs>
 			<d-tabs class="ripple" onclick="testAct.content('tab3')">Tab3</d-tabs>
 			<d-tabs class="ripple" onclick="testAct.content('tab4')">Tab4</d-tabs>
 			<d-tabs class="ripple" onclick="testAct.content('tab5')">Tab5</d-tabs>
+
 	</d-navbar>	
 	
 	<d-content>

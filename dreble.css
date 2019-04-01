@@ -191,8 +191,8 @@ d-navbar{
 	background: var(--PrimaryColor);
 	height:55px;	
 }
-d-navbar[content~="center"]{
-  justify-content: center;
+d-navbar[content~="center"] d-tabs {
+    margin: 0 auto;
 }
 d-navbar[position~="top"]{
 	top:0;
@@ -208,12 +208,12 @@ d-navbar > navbar-title{
   margin-left: 5px;
 }
 d-navbar d-tabs{
+
   transition: 0.1s;
-  display: inline;
+  display: inline-block;
   background: transparent;
   position: relative;
   overflow: auto;
-  margin: none;
   height: 95%;
   min-width: 30px;
   padding: 0px 30px;
