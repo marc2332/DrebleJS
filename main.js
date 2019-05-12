@@ -2,14 +2,15 @@
 const HomeAct = new activity({name:"Home",code:`
 
 	<d-navbar position="top">
-			<img class="navbar-icon" onclick="createAppDrawer2()" src="menu.svg"></img>
+			<img class="navbar-icon" onclick="createAppDrawer2()" src="assets/menu.svg"></img>
 			<navbar-title> Main Activity </navbar-title>
 	</d-navbar>
 	<d-content>
+	<div class="card">
 			<p>Scroll down</p>
-			<i class="spacer"></i>
+			<div class="spacer"></div>
 			<button class="ripple" onclick="createDialog1()">Open dialog</button>
-
+	</div>
 			<div class="card">
 					<p>Lorem ipsum dolor sit amet consectetur adipiscing elit ligula rutrum convallis aenean, egestas consequat massa sagittis purus tortor accumsan integer magnis class, faucibus enim quis orci facilisis per hendrerit vel velit proin. Dapibus suscipit leo aptent hac litora varius aliquet bibendum donec sollicitudin sed in viverra interdum tempor pharetra augue pellentesque, nibh duis quis sagittis odio gravida blandit class nulla dignissim mollis libero nisl consequat orci ante non. Curae sed vel proin duis suscipit hendrerit varius aliquet, pretium sagittis lectus fames nulla enim penatibus, habitasse malesuada eleifend rutrum nec ut nam.</p>
 					<p>Lorem ipsum dolor sit amet consectetur adipiscing elit ligula rutrum convallis aenean, egestas consequat massa sagittis purus tortor accumsan integer magnis class, faucibus enim quis orci facilisis per hendrerit vel velit proin. Dapibus suscipit leo aptent hac litora varius aliquet bibendum donec sollicitudin sed in viverra interdum tempor pharetra augue pellentesque, nibh duis quis sagittis odio gravida blandit class nulla dignissim mollis libero nisl consequat orci ante non. Curae sed vel proin duis suscipit hendrerit varius aliquet, pretium sagittis lectus fames nulla enim penatibus, habitasse malesuada eleifend rutrum nec ut nam.</p>
@@ -46,11 +47,11 @@ function createAppDrawer2(){
 		`);
 }
 	const colors = {
-        Name : 'purple',
+        Name : 'test',
         Primary : 'purple',
         Light: 'lightpink',
         Secondary: 'red',
-        Background: 'purple',
+        Background: 'black',
         RippleEffect : 'yellow'
     }
     newTheme(colors);
@@ -60,16 +61,17 @@ function createAppDrawer2(){
 	});
 
 function onActivity2(){
+	
 	const configAct = new activity({name:"config",code:`
 
 			
 			<d-navbar position="top">
-					<img class="navbar-icon" onclick="closeActivity('expand_off')" src="arrow_back.svg"></img>
+					<img class="navbar-icon" onclick="closeActivity('expand_off')" src="assets/arrow_back.svg"></img>
 					<navbar-title> Fixed bar <navbar-title>
 			</d-navbar>
 			<d-content>
 					<d-navbar position="top">
-							<img class="navbar-icon" onclick="createAppDrawer1()" src="menu.svg"></img>
+							<img class="navbar-icon" onclick="createAppDrawer1()" src="assets/menu.svg"></img>
 							<navbar-title> Not fixed bar <navbar-title>
 					</d-navbar>
 					<div class="card">
@@ -82,26 +84,25 @@ function onActivity2(){
 				
 					<p>Click the floating button</p>
 					</div>
-					<d-fbtn src="tick.svg" pos=" bottom right "size=" normal" id="fbtn1" onclick="alert('hi!!')"></d-fbtn>
+					<d-fbtn src="assets/tick.svg" pos=" bottom right "size=" normal" id="fbtn1" onclick="alert('hi!!')"></d-fbtn>
 	
 			</d-content>
 	`});
+
 	configAct.launch({
   	animation:"expand_in"
   })
+
 }
 let testAct;
 function onTest(){
 	 testAct = new activity({name:"test",code:`
-	<d-navbar position="top" content="center">
-			
-			
+	<d-navbar position="top" content="center">			
 			<d-tabs class="ripple" onclick="testAct.close('slide_down')">return</d-tabs>
 			<d-tabs class="ripple" onclick="testAct.content('tab2')">Tab2</d-tabs>
 			<d-tabs class="ripple" onclick="testAct.content('tab3')">Tab3</d-tabs>
 			<d-tabs class="ripple" onclick="testAct.content('tab4')">Tab4</d-tabs>
 			<d-tabs class="ripple" onclick="testAct.content('tab5')">Tab5</d-tabs>
-
 	</d-navbar>	
 	
 	<d-content>
@@ -128,7 +129,7 @@ function onActivity3(){
 	const counter = new activity({name:"counter",code:`
 
 		<d-navbar position="top">
-			<img class="navbar-icon" onclick="closeActivity('slide_right')" src="arrow_back.svg"></img>
+			<img class="navbar-icon" onclick="closeActivity('slide_right')" src="assets/arrow_back.svg"></img>
 			<navbar-title> Top bar <navbar-title>
 		</d-navbar>
 		<d-content>
@@ -141,7 +142,7 @@ function onActivity3(){
 				<p>Lorem ipsum dolor sit amet consectetur adipiscing elit ligula rutrum convallis aenean, egestas consequat massa sagittis purus tortor accumsan integer magnis class, faucibus enim quis orci facilisis per hendrerit vel velit proin. Dapibus suscipit leo aptent hac litora varius aliquet bibendum donec sollicitudin sed in viverra interdum tempor pharetra augue pellentesque, nibh duis quis sagittis odio gravida blandit class nulla dignissim mollis libero nisl consequat orci ante non. Curae sed vel proin duis suscipit hendrerit varius aliquet, pretium sagittis lectus fames nulla enim penatibus, habitasse malesuada eleifend rutrum nec ut nam.</p>
 					<p>Lorem ipsum dolor sit amet consectetur adipiscing elit ligula rutrum convallis aenean, egestas consequat massa sagittis purus tortor accumsan integer magnis class, faucibus enim quis orci facilisis per hendrerit vel velit proin. Dapibus suscipit leo aptent hac litora varius aliquet bibendum donec sollicitudin sed in viverra interdum tempor pharetra augue pellentesque, nibh duis quis sagittis odio gravida blandit class nulla dignissim mollis libero nisl consequat orci ante non. Curae sed vel proin duis suscipit hendrerit varius aliquet, pretium sagittis lectus fames nulla enim penatibus, habitasse malesuada eleifend rutrum nec ut nam.</p>
 
-				<d-fbtn src="plus.svg" pos="bottom left " size=" normal" id="fbtn2" onclick="_counter++; document.getElementById('_counter').innerText='Pressed: '+_counter;"></d-fbtn >
+				<d-fbtn src="assets/plus.svg" pos="bottom left " size=" normal" id="fbtn2" onclick="_counter++; document.getElementById('_counter').innerText='Pressed: '+_counter;"></d-fbtn >
 
 			</d-content>
 		
@@ -150,6 +151,3 @@ function onActivity3(){
   	animation:"slide_left"
   })
 }
-
-
-

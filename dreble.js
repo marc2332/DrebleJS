@@ -9,19 +9,18 @@ Full license > https://github.com/marc2332/DrebleJS/blob/master/LICENSE.md
 
 ·······························
 */
-
+const root = document.createElement("div");
+root.id = "root";
+document.documentElement.appendChild(root);
 let activitiesHistory = [];
 let i = 0;
-window.onload = function(){
-	//
-}
 function load(obj){
 	const act = obj['home'];
     const _activity_ = document.createElement("div");
     _activity_.classList = "activity";
     _activity_.setAttribute("id",act.name);
     _activity_.innerHTML=act.code;
-    document.body.appendChild(_activity_);
+    root.appendChild(_activity_);
 	activitiesHistory.push(act.name);
 	refreshRippleElements();
 }
@@ -34,7 +33,7 @@ function activity(obj){
             _ACTIVITY.classList = "activity";
             _ACTIVITY.setAttribute("id",this.name);
             _ACTIVITY.innerHTML=this.code
-            document.body.appendChild(_ACTIVITY);
+            root.appendChild(_ACTIVITY);
             document.getElementById(this.name).style = `animation: _activity_${_config.animation} 0.25s;`;
             activitiesHistory.push(this.name);
             refreshRippleElements();
@@ -52,9 +51,8 @@ function activity(obj){
         setTimeout(function(){ 
             document.getElementById(me).remove();
             activitiesHistory.pop();
-     }, 300);
+        }, 300);
     }
-   
 }
 class FloatingButton extends  HTMLElement {
     constructor() {
@@ -81,8 +79,7 @@ class FloatingButton extends  HTMLElement {
         
         this.parentElement.insertBefore(button,this.parentElement.children[0]);       
         this.remove();
-        button.addEventListener('click', newRipple); 
-         
+        button.addEventListener('click', newRipple);  
    }
 }
 window.customElements.define('d-fbtn', FloatingButton);
@@ -112,10 +109,10 @@ function closeActivity(type){
 }
 
 function refreshRippleElements(){
-
-const buttons = document.getElementsByClassName('ripple');
- Array.prototype.forEach.call(buttons, function (b) {
- 	b.addEventListener('click', newRipple); }); 
+    const buttons = document.getElementsByClassName('ripple');
+    for(i=0;i<buttons.length;i++){
+        buttons[i].addEventListener('click', newRipple); 
+    }
 }
  function newRipple (e) { 
 	 const circle = document.createElement('div'); 
@@ -132,7 +129,6 @@ function error(message){
 	console.error("Dreble > "+message);
 }
 
-const root = document.documentElement;
 var Names = [];
 var PrimaryColors = [];
 var SecondaryColors = [];
@@ -198,7 +194,6 @@ function setTheme(newTheme){
             }
     }
 }
-
 function newDialog(activity,code){
 	const page = document.getElementById(activity);
 	const dialog = document.createElement("div");
@@ -219,10 +214,7 @@ function newDialog(activity,code){
 }
 function closeDialog(me){
 	document.getElementById(me.getAttribute("toclose")).remove();
-
 }
-
-
 function Menu(id,code){
     const menu_id = id+"_appDrawer";
 	const page = document.getElementById(activitiesHistory[activitiesHistory.length-1]);
@@ -249,12 +241,10 @@ function closeMenu(act){
     }else{
          me = document.getElementById(act+"_appDrawer");
     }
-    console.log(me);
     me.classList.add("hiding");
 	setTimeout(function(){ 
 		me.remove();
-	 }, 290);
-	
+	}, 290);
 }
 function FloatingButton2(obj){ 
   	const _fbtn = document.createElement("button");
