@@ -1,7 +1,8 @@
 
+
 const HomeAct = new activity({name:"Home",code:`
 
-	<d-navbar position="top">
+<d-navbar position="top">
 			<img class="navbar-icon" onclick="createAppDrawer2()" src="assets/menu.svg"></img>
 			<navbar-title> Main Activity </navbar-title>
 	</d-navbar>
@@ -10,6 +11,7 @@ const HomeAct = new activity({name:"Home",code:`
 			<p>Scroll down</p>
 			<div class="spacer"></div>
 			<button class="ripple" onclick="createDialog1()">Open dialog</button>
+			<button onclick="test.launch({ animation:'slide_up'})"> Test2</button>
 	</div>
 			<div class="card">
 					<p>Lorem ipsum dolor sit amet consectetur adipiscing elit ligula rutrum convallis aenean, egestas consequat massa sagittis purus tortor accumsan integer magnis class, faucibus enim quis orci facilisis per hendrerit vel velit proin. Dapibus suscipit leo aptent hac litora varius aliquet bibendum donec sollicitudin sed in viverra interdum tempor pharetra augue pellentesque, nibh duis quis sagittis odio gravida blandit class nulla dignissim mollis libero nisl consequat orci ante non. Curae sed vel proin duis suscipit hendrerit varius aliquet, pretium sagittis lectus fames nulla enim penatibus, habitasse malesuada eleifend rutrum nec ut nam.</p>
@@ -21,8 +23,18 @@ const HomeAct = new activity({name:"Home",code:`
 			</div>
 
 	</d-content>
-
 	`});
+const test = new activity({name:"test",code:`
+
+
+<div content="centerxcenter">
+	<div>
+		<p>Centered text</p>
+		<button onclick="closeActivity('slide_down')">close</button>
+	</div>
+</div>
+	`});
+
 function createDialog1(){
 	newDialog('Home',`
 
@@ -41,8 +53,8 @@ function createAppDrawer2(){
 		<d-list-appdrawer>
 				<button class="ripple" onclick="onActivity3()">Counter activity</button>
 				<button class="ripple" onclick="closeMenu('Home')">close</button>
-				<button class="ripple">Testing</button>
-				<button class="ripple">Testing</button>
+				<button class="ripple">Hello world!</button>
+				<button class="ripple">Hello world!</button>
 		</d-list-appdrawer>
 		`);
 }
@@ -55,7 +67,7 @@ function createAppDrawer2(){
         RippleEffect : 'yellow'
     }
     newTheme(colors);
-    setTheme("Purple");	
+    setTheme("Blue");	
 	load({
 		home: HomeAct
 	});
@@ -136,7 +148,10 @@ function onActivity3(){
 				
 				<div class="card" content="center">
 						<p id="_counter">Pressed: `+_counter+`</p>
+						<button class="ripple"  onclick="_counter++; document.getElementById('_counter').innerText='Pressed: '+_counter;">Push up</button>
+						<button class="ripple"  onclick="_counter--; document.getElementById('_counter').innerText='Pressed: '+_counter;">Push down</button>
 				</div>
+
 				<button onclick="closeActivity('slide_right')">Go back</button>
 				<button onclick="onActivity2()">config</button>
 				<p>Lorem ipsum dolor sit amet consectetur adipiscing elit ligula rutrum convallis aenean, egestas consequat massa sagittis purus tortor accumsan integer magnis class, faucibus enim quis orci facilisis per hendrerit vel velit proin. Dapibus suscipit leo aptent hac litora varius aliquet bibendum donec sollicitudin sed in viverra interdum tempor pharetra augue pellentesque, nibh duis quis sagittis odio gravida blandit class nulla dignissim mollis libero nisl consequat orci ante non. Curae sed vel proin duis suscipit hendrerit varius aliquet, pretium sagittis lectus fames nulla enim penatibus, habitasse malesuada eleifend rutrum nec ut nam.</p>

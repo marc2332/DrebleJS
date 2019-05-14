@@ -76,7 +76,6 @@ class FloatingButton extends  HTMLElement {
             button.style = "background-image: url(" + this.getAttribute("src") +") ; background-repeat: no-repeat; background-position: center; font-size: 15px;"; 
         }
         if(this.classList.contains("disabled")=== false) button.setAttribute("onclick",this.getAttribute("onclick"));
-        
         this.parentElement.insertBefore(button,this.parentElement.children[0]);       
         this.remove();
         button.addEventListener('click', newRipple);  

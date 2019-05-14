@@ -471,4 +471,20 @@ div.card{
 div[content~="center"]{
   justify-content: center;
   text-align: center;
+  height: 100%;
 }
+div[content~="centerxcenter"]{
+  height: 100%;
+  width: 100%
+}
+div[content~="centerxcenter"] > *{
+  position: absolute;
+  margin-block-end:0;
+  margin-block-start:0;
+  top:50%;
+  left:50%;
+  transform: translate(-55%,-50%);
+  text-align: center;
+
+}
+
