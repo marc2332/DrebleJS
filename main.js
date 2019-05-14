@@ -25,15 +25,13 @@ const HomeAct = new activity({name:"Home",code:`
 	</d-content>
 	`});
 const test = new activity({name:"test",code:`
-
-
-<div content="centerxcenter">
+<div content="center-center">
 	<div>
 		<p>Centered text</p>
-		<button onclick="closeActivity('slide_down')">close</button>
+		<button class="ripple" onclick="closeActivity('slide_down')">close</button>
 	</div>
 </div>
-	`});
+`});
 
 function createDialog1(){
 	newDialog('Home',`

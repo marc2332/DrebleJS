@@ -471,13 +471,14 @@ div.card{
 div[content~="center"]{
   justify-content: center;
   text-align: center;
-  height: 100%;
+  height: auto
+  display:inline-block;
 }
-div[content~="centerxcenter"]{
+div[content~="center-center"]{
   height: 100%;
   width: 100%
 }
-div[content~="centerxcenter"] > *{
+div[content~="center-center"] > *{
   position: absolute;
   margin-block-end:0;
   margin-block-start:0;
@@ -485,6 +486,4 @@ div[content~="centerxcenter"] > *{
   left:50%;
   transform: translate(-55%,-50%);
   text-align: center;
-
 }
-
