@@ -1,10 +1,8 @@
 
-
 const HomeAct = new activity({name:"Home",code:`
-
 <d-navbar position="top">
 			<img class="navbar-icon" onclick="createAppDrawer2()" src="assets/menu.svg"></img>
-			<navbar-title> Main Activity </navbar-title>
+			<d-title> Main Activity </d-title>
 	</d-navbar>
 	<d-content>
 	<div class="card">
@@ -13,14 +11,14 @@ const HomeAct = new activity({name:"Home",code:`
 			<button class="ripple" onclick="createDialog1()">Open dialog</button>
 			<button onclick="test.launch({ animation:'slide_up'})"> Test2</button>
 	</div>
-			<div class="card">
-					<p>Lorem ipsum dolor sit amet consectetur adipiscing elit ligula rutrum convallis aenean, egestas consequat massa sagittis purus tortor accumsan integer magnis class, faucibus enim quis orci facilisis per hendrerit vel velit proin. Dapibus suscipit leo aptent hac litora varius aliquet bibendum donec sollicitudin sed in viverra interdum tempor pharetra augue pellentesque, nibh duis quis sagittis odio gravida blandit class nulla dignissim mollis libero nisl consequat orci ante non. Curae sed vel proin duis suscipit hendrerit varius aliquet, pretium sagittis lectus fames nulla enim penatibus, habitasse malesuada eleifend rutrum nec ut nam.</p>
-					<p>Lorem ipsum dolor sit amet consectetur adipiscing elit ligula rutrum convallis aenean, egestas consequat massa sagittis purus tortor accumsan integer magnis class, faucibus enim quis orci facilisis per hendrerit vel velit proin. Dapibus suscipit leo aptent hac litora varius aliquet bibendum donec sollicitudin sed in viverra interdum tempor pharetra augue pellentesque, nibh duis quis sagittis odio gravida blandit class nulla dignissim mollis libero nisl consequat orci ante non. Curae sed vel proin duis suscipit hendrerit varius aliquet, pretium sagittis lectus fames nulla enim penatibus, habitasse malesuada eleifend rutrum nec ut nam.</p>
+	<div class="card">
+			<p>Lorem ipsum dolor sit amet consectetur adipiscing elit ligula rutrum convallis aenean, egestas consequat massa sagittis purus tortor accumsan integer magnis class, faucibus enim quis orci facilisis per hendrerit vel velit proin. Dapibus suscipit leo aptent hac litora varius aliquet bibendum donec sollicitudin sed in viverra interdum tempor pharetra augue pellentesque, nibh duis quis sagittis odio gravida blandit class nulla dignissim mollis libero nisl consequat orci ante non. Curae sed vel proin duis suscipit hendrerit varius aliquet, pretium sagittis lectus fames nulla enim penatibus, habitasse malesuada eleifend rutrum nec ut nam.</p>
+			<p>Lorem ipsum dolor sit amet consectetur adipiscing elit ligula rutrum convallis aenean, egestas consequat massa sagittis purus tortor accumsan integer magnis class, faucibus enim quis orci facilisis per hendrerit vel velit proin. Dapibus suscipit leo aptent hac litora varius aliquet bibendum donec sollicitudin sed in viverra interdum tempor pharetra augue pellentesque, nibh duis quis sagittis odio gravida blandit class nulla dignissim mollis libero nisl consequat orci ante non. Curae sed vel proin duis suscipit hendrerit varius aliquet, pretium sagittis lectus fames nulla enim penatibus, habitasse malesuada eleifend rutrum nec ut nam.</p>
 
-					<button onclick="onTest()">test</button>
-					<button onclick="onActivity2()">config</button>
-					<button onclick="onActivity3()">Counter</button>
-			</div>
+			<button onclick="onTest()">test</button>
+			<button onclick="onActivity2()">config</button>
+			<button onclick="onActivity3()">Counter</button>
+	</div>
 
 	</d-content>
 	`});
@@ -58,11 +56,11 @@ function createAppDrawer2(){
 }
 	const colors = {
         Name : 'test',
-        Primary : 'purple',
-        Light: 'lightpink',
-        Secondary: 'red',
-        Background: 'black',
-        RippleEffect : 'yellow'
+        Primary : 'gray',
+        Light: 'lightgray',
+        Secondary: 'lightgray',
+        Background: 'white',
+        RippleEffect : 'rgb(0,0,0,0.3)'
     }
     newTheme(colors);
     setTheme("Blue");	
@@ -72,37 +70,33 @@ function createAppDrawer2(){
 
 function onActivity2(){
 	
-	const configAct = new activity({name:"config",code:`
-
-			
-			<d-navbar position="top">
-					<img class="navbar-icon" onclick="closeActivity('expand_off')" src="assets/arrow_back.svg"></img>
-					<navbar-title> Fixed bar <navbar-title>
-			</d-navbar>
-			<d-content>
-					<d-navbar position="top">
-							<img class="navbar-icon" onclick="createAppDrawer1()" src="assets/menu.svg"></img>
-							<navbar-title> Not fixed bar <navbar-title>
-					</d-navbar>
-					<div class="card">
-					<p>Configuration Page</p>
-						<button class="ripple" >example</button>
-					<button class="ripple" onclick="closeActivity('expand_off')">back</button>
-					<p>Lorem ipsum dolor sit amet consectetur adipiscing elit ligula rutrum convallis aenean, egestas consequat massa sagittis purus tortor accumsan integer magnis class, faucibus enim quis orci facilisis per hendrerit vel velit proin. Dapibus suscipit leo aptent hac litora varius aliquet bibendum donec sollicitudin sed in viverra interdum tempor pharetra augue pellentesque, nibh duis quis sagittis odio gravida blandit class nulla dignissim mollis libero nisl consequat orci ante non. Curae sed vel proin duis suscipit hendrerit varius aliquet, pretium sagittis lectus fames nulla enim penatibus, habitasse malesuada eleifend rutrum nec ut nam.</p>
-					<p>Lorem ipsum dolor sit amet consectetur adipiscing elit ligula rutrum convallis aenean, egestas consequat massa sagittis purus tortor accumsan integer magnis class, faucibus enim quis orci facilisis per hendrerit vel velit proin. Dapibus suscipit leo aptent hac litora varius aliquet bibendum donec sollicitudin sed in viverra interdum tempor pharetra augue pellentesque, nibh duis quis sagittis odio gravida blandit class nulla dignissim mollis libero nisl consequat orci ante non. Curae sed vel proin duis suscipit hendrerit varius aliquet, pretium sagittis lectus fames nulla enim penatibus, habitasse malesuada eleifend rutrum nec ut nam.</p>
-					
+const configAct = new activity({name:"config",code:`
+		<d-navbar position="top">
+				<img class="navbar-icon" onclick="closeActivity('expand_off')" src="assets/arrow_back.svg"></img>
+				<d-title> Fixed bar <d-title>
+		</d-navbar>
+		<d-content>
+				<d-navbar position="top">
+						<img class="navbar-icon" onclick="createAppDrawer1()" src="assets/menu.svg"></img>
+						<d-title> Not fixed bar <d-title>
+				</d-navbar>
+				<div class="card">
+				<p>Configuration Page</p>
+					<button class="ripple" >example</button>
+				<button class="ripple" onclick="closeActivity('expand_off')">back</button>
+				<p>Lorem ipsum dolor sit amet consectetur adipiscing elit ligula rutrum convallis aenean, egestas consequat massa sagittis purus tortor accumsan integer magnis class, faucibus enim quis orci facilisis per hendrerit vel velit proin. Dapibus suscipit leo aptent hac litora varius aliquet bibendum donec sollicitudin sed in viverra interdum tempor pharetra augue pellentesque, nibh duis quis sagittis odio gravida blandit class nulla dignissim mollis libero nisl consequat orci ante non. Curae sed vel proin duis suscipit hendrerit varius aliquet, pretium sagittis lectus fames nulla enim penatibus, habitasse malesuada eleifend rutrum nec ut nam.</p>
+				<p>Lorem ipsum dolor sit amet consectetur adipiscing elit ligula rutrum convallis aenean, egestas consequat massa sagittis purus tortor accumsan integer magnis class, faucibus enim quis orci facilisis per hendrerit vel velit proin. Dapibus suscipit leo aptent hac litora varius aliquet bibendum donec sollicitudin sed in viverra interdum tempor pharetra augue pellentesque, nibh duis quis sagittis odio gravida blandit class nulla dignissim mollis libero nisl consequat orci ante non. Curae sed vel proin duis suscipit hendrerit varius aliquet, pretium sagittis lectus fames nulla enim penatibus, habitasse malesuada eleifend rutrum nec ut nam.</p>
 				
-					<p>Click the floating button</p>
-					</div>
-					<d-fbtn src="assets/tick.svg" pos=" bottom right "size=" normal" id="fbtn1" onclick="alert('hi!!')"></d-fbtn>
-	
-			</d-content>
-	`});
+			
+				<p>Click the floating button</p>
+				</div>
+				<d-fbtn src="assets/tick.svg" pos=" bottom right "size=" normal" id="fbtn1" onclick="alert('hi!!')"></d-fbtn>
 
-	configAct.launch({
-  	animation:"expand_in"
-  })
-
+		</d-content>
+`});
+configAct.launch({
+	animation:"expand_in"
+})
 }
 let testAct;
 function onTest(){
@@ -140,7 +134,7 @@ function onActivity3(){
 
 		<d-navbar position="top">
 			<img class="navbar-icon" onclick="closeActivity('slide_right')" src="assets/arrow_back.svg"></img>
-			<navbar-title> Top bar <navbar-title>
+			<d-title> Top bar <d-title>
 		</d-navbar>
 		<d-content>
 				

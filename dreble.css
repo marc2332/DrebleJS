@@ -7,7 +7,21 @@
   outline: 0 !important;
   -webkit-tap-highlight-color:  rgba(255, 255, 255, 0) !important;
   scroll-behavior: smooth;
+  -webkit-touch-callout: none; 
+  -webkit-user-select: none; 
+  -khtml-user-select: none; 
+  -moz-user-select: none; 
+  -ms-user-select: none; 
   user-select: none;
+}
+*[selectable="true"] > *{
+  user-select: text;
+  -webkit-touch-callout: auto; 
+  -webkit-user-select: text; 
+  -khtml-user-select: text; 
+  -moz-user-select: text; 
+  -ms-user-select: text; 
+  user-select: text;
 }
 :root{
     --PrimaryColor: #126DFF;
@@ -17,32 +31,12 @@
     --BackgroundColor: white;
     --RippleEffect: white;
 }
-::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
-    background: transparent;
+#root{ /*Body element*/
+  padding: 0;
+  margin: 0;
 }
-::-webkit-scrollbar-track {
-    background: transparent;
-}
-::-webkit-scrollbar-thumb {
-    transition: 0.15s;
-    width: 3.5px !important;
-    height: 3.5px !important;
-    background: lightgray;
-}
-::-webkit-scrollbar-thumb:hover {
-    transition: 0.15s;
-    background: lightgray;
-}
-::-webkit-scrollbar-corner{
-    visibility: hidden;
-    opacity: 0;
-    background: transparent;
-}
-body{
-	padding: 0;
-	margin: 0;
+button::-moz-focus-inner{
+  border:0;
 }
 button {
     overflow: hidden;
@@ -58,6 +52,14 @@ button .ripple {
 }
 d-tabs .ripple {
     border-radius: 100%;
+    background-color: var(--RippleEffect);
+    position: absolute;
+    transform: scale(0);
+    animation: _button_ripple 0.3s linear;
+    opacity: 10;
+}
+.card.ripple .ripple{
+  border-radius: 100%;
     background-color: var(--RippleEffect);
     position: absolute;
     transform: scale(0);
@@ -164,7 +166,7 @@ button.disabled:not(.FloatingButton){
     left:45%;
     right: 50%;
 }
-.FloatingButton.small{
+.FloatingButton[size~="small"]{
     height: 45px;
     width:45px;
 }
@@ -172,47 +174,45 @@ button.disabled:not(.FloatingButton){
     height: 60px;
     width:60px;
 }
-.FloatingButton.big{
+.FloatingButton[size~="large"]{
     height: 75px;
     width:75px;
 }
 d-navbar{
   margin: 0;
-	display: flex;
-	box-sizing: border-box;
+  display: flex;
+  box-sizing: border-box;
   position:relative;
   overflow-x:auto;
   overflow-y: hidden;
-	width: 100%;
-	background: var(--PrimaryColor);
-	height:55px;	
+  width: 100%;
+  background: var(--PrimaryColor);
+  height:55px;  
+  box-shadow: 0px 3px 10px rgba(0,0,0,0.3);
 }
 d-navbar[content~="center"] d-tabs {
     margin: 0 auto;
 }
 d-navbar[position~="top"]{
-	top:0;
-	box-shadow: 0px 3px 10px rgba(0,0,0,0.3);
+  top:0;
 }
-
-d-navbar > navbar-title{
-	display: flex;
-	font-size: 20px;
-	color:white;
-	position: relative;
-	top:16px;
+d-navbar > d-title{
+  display: flex;
+  font-size: 20px;
+  color:white;
+  position: relative;
+  top:16px;
   margin-left: 5px;
+  margin-right: 15px;
 }
 d-navbar d-tabs{
-
   transition: 0.1s;
   display: inline-block;
   background: transparent;
   position: relative;
   overflow: auto;
   height: 95%;
-  min-width: 30px;
-  padding: 0px 30px;
+  min-width: 90px;
   color: white;
   box-shadow: none;
   border: none;
@@ -228,20 +228,20 @@ d-navbar d-tabs.selected{
   border-bottom: 5px solid white;
 }
 d-navbar > .navbar-icon{
-	margin: 0;
-	position: relative;
-	top: 8px;
-	bottom: 0px;
-	display: flex;
-	height: 25px;
-	width: 25px;	
-	padding: 5px;
-	margin: 2px 8px;
-	cursor: pointer;
-	border-radius: 100px;
+  margin: 0;
+  position: relative;
+  top: 8px;
+  bottom: 0px;
+  display: flex;
+  height: 25px;
+  width: 25px;  
+  padding: 5px;
+  margin: 2px 8px;
+  cursor: pointer;
+  border-radius: 100px;
 }
 d-navbar > .navbar-icon:hover{
-	background: rgba(255,255,255,0.4);
+  background: rgba(255,255,255,0.4);
 }
 d-navbar::-webkit-scrollbar {display:none;}
 d-navbar::-moz-scrollbar {display:none;}
@@ -249,37 +249,37 @@ d-navbar::-o-scrollbar {display:none;}
 d-navbar::-google-ms-scrollbar {display:none;}
 d-navbar::-khtml-scrollbar {display:none;}
 .activity{
-	background: var(--BackgroundColor);
-	width: 100%;
-	max-height: 100%;
-	box-sizing: border-box;
-	top: 0;
+  background: var(--BackgroundColor);
+  width: 100%;
+  max-height: 100%;
+  box-sizing: border-box;
+  top: 0;
   bottom:0;
   left:0;
   right: 0;
   position:fixed;
   overflow-y:hidden;
   overflow-x:hidden;
-	margin: 0;
-	padding: 0;
-	box-shadow: 0px -2px 10px rgba(0,0,0,0.35);
+  margin: 0;
+  padding: 0;
+  box-shadow: 0px -2px 10px rgba(0,0,0,0.35);
 }
 .activity d-content{
- 	width: 95%;
+  width: 98%;
   left: 0;
   top: 0;
   right: 0;
-	max-height: 90%;
-	overflow-y: auto;
+  max-height: 90%;
+  overflow-y: auto;
   overflow-x: hidden;
-	display: block;
-	position:relative;
-  margin: 10px;
+  display: block;
+  position:relative;
+  margin: 15px 1%;
 }
 @keyframes _activity_slide_up{
   from{
     opacity: 0.3  ;
-    transform: translateY(80px);
+    transform: translateY(15%);
   }
   to{
     opacity: 1;
@@ -298,7 +298,7 @@ d-navbar::-khtml-scrollbar {display:none;}
 }
 @keyframes _activity_slide_down{
   from{
-  	opacity: 1;
+    opacity: 1;
     transform: translateY(0px);
   }
   to{
@@ -348,37 +348,37 @@ d-navbar::-khtml-scrollbar {display:none;}
 }
 
 .spacer{
-	border-top:2px solid lightgray;
+  border-top:2px solid lightgray;
   width: 100%;
   height: 2px;
   margin: 2px 0;
 }
 .dialog > .dialog_background{
-	position: fixed;
-	left: 0;
-	top: 0;
-	height: 100%;
-	width: 100%;
-	background: rgba(0,0,0,0.7);
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background: rgba(0,0,0,0.7);
 }
 .dialog > .dialog_window{
-	animation: _dialog_fade_in linear 0.17s;
-	min-height: 175px;
-	max-height: 90%;
-	width: 300px;
-	padding: 10px;
-	background: white;
-	left: 50%;
-	top: 50%;
- 	transform: translate(-50%, -50%);
-	position: fixed;
-	border-radius: 5px;
-	box-shadow: 0px 5px 15px rgba(0,0,0,0.25);
+  animation: _dialog_fade_in linear 0.17s;
+  min-height: 175px;
+  max-height: 90%;
+  width: 300px;
+  padding: 10px;
+  background: white;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  position: fixed;
+  border-radius: 5px;
+  box-shadow: 0px 5px 15px rgba(0,0,0,0.25);
 }
 .dialog_window > dialog-title{
-	font-size: 20px;
-	float: left;
-	padding: 15px;
+  font-size: 20px;
+  float: left;
+  padding: 15px;
 }
 @keyframes _dialog_fade_in{
   from{
@@ -391,36 +391,36 @@ d-navbar::-khtml-scrollbar {display:none;}
   }
 }
 .menu{
-	top: 0;
-	left: 0;
-	height: 100%;
-	width: 100%;
-  	overflow:none;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+    overflow:none;
 }
 .menu.hiding > .menu_window{
-  	animation:_menu_left 0.35s;
+    animation:_menu_left 0.35s;
 }
 .menu.hiding > .menu_background{
-  	transition: 0.3s;
-  	opacity:0;
+    transition: 0.3s;
+    opacity:0;
 }
 .menu > .menu_background{
-  	position: fixed;
-  	left: 0;
-  	top: 0;
-  	height: 100%;
-  	width: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
     overflow:none;
-  	background: rgba(0,0,0,0.7);
+    background: rgba(0,0,0,0.7);
 }
 .menu > .menu_window{
-	animation: _menu_right linear 0.15s;
-	position: fixed;
-	top: 0;
-	left: 0;
-	background: white;
-	height: 100%;
-	width: 200px;
+  animation: _menu_right linear 0.15s;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: white;
+  height: 100%;
+  width: 200px;
 }
 .menu > .menu_window d-list-appdrawer button{
   margin: 0;
@@ -463,10 +463,21 @@ d-navbar::-khtml-scrollbar {display:none;}
   }
 }
 div.card{
+  height: auto;
+  width: auto;
   padding: 10px;
   margin: 8px;
   box-shadow: 0px 4px 5px rgba(0,0,0,0.2);
   border-radius: 2px;
+}
+div.card2{
+  padding: 10px;
+  margin: 810x;
+  border:2px solid rgb(165,164,164);
+  border-radius: 2px;
+}
+ul li{
+  padding:7px 0px;
 }
 div[content~="center"]{
   justify-content: center;
@@ -486,4 +497,6 @@ div[content~="center-center"] > *{
   left:50%;
   transform: translate(-55%,-50%);
   text-align: center;
+  padding: 0;
+  margin: 0;
 }

@@ -87,13 +87,15 @@ class NavBarTab extends  HTMLElement {
         super();
     } 
     connectedCallback(){
-        this.addEventListener("click",function(){
-            for(i=0;i<this.parentElement.children.length;i++){
-                const element = this.parentElement.children[i];
-                element.classList.remove("selected");
-            }
-            this.classList = "selected"
-        })
+        if(this.getAttribute("static")!="true"){
+            this.addEventListener("click",function(){
+                for(i=0;i<this.parentElement.children.length;i++){
+                    const element = this.parentElement.children[i];
+                    element.classList.remove("selected");
+                }
+                this.classList = "selected"
+            })
+        }
          
    }
 }
@@ -233,7 +235,7 @@ function Menu(id,code){
 	page.appendChild(menu);
     refreshRippleElements();
 }
-function closeMenu(act){
+const closeMenu=(act)=>{
     let me;
     if(typeof act =="object"){
          me = document.getElementById(act.getAttribute("toclose"));
@@ -245,12 +247,4 @@ function closeMenu(act){
 		me.remove();
 	}, 290);
 }
-function FloatingButton2(obj){ 
-  	const _fbtn = document.createElement("button");
-  	_fbtn.setAttribute("size",obj.size);
-  	_fbtn.setAttribute("src",obj.icon);
-    _fbtn.classList = "FloatingButton";
-  	_fbtn.setAttribute("pos",obj.position);
-  	document.getElementById(obj.activity).appendChild(_fbtn);
-  
-}
+
