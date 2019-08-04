@@ -9,51 +9,71 @@ Full license > https://github.com/marc2332/DrebleJS/blob/master/LICENSE.md
 
 ·······························
 */
-const root = document.createElement("div");
-root.id = "root";
-document.documentElement.appendChild(root);
 let activitiesHistory = [];
 let i = 0;
-function load(obj){
-	const act = obj['home'];
-    const _activity_ = document.createElement("div");
-    _activity_.classList = "activity";
-    _activity_.setAttribute("id",act.name);
-    _activity_.innerHTML=act.code;
-    root.appendChild(_activity_);
-	activitiesHistory.push(act.name);
-	refreshRippleElements();
-}
 
-function activity(obj){
-    this.name = obj.name;
-    this.code = obj.code;
-    this.launch = function(_config){
+const Dreble = {
+    Init : function (config) {
+        if(config.root==undefined) {
+            console.warn("There is no root element defined.")
+            
+        }else{
+            this.root = document.getElementById(config.root)
+        }
+        
+        if(config['home']!=undefined){
+            const act = config['home'];
+            const _activity_ = document.createElement("div");
+            _activity_.classList = "activity";
+            _activity_.setAttribute("id",act.name);
+            _activity_.innerHTML=act.code;
+            Dreble.root.appendChild(_activity_);
+            activitiesHistory.push(act.name);
+            refreshRippleElements();
+        }
+        
+        return Dreble.root;
+    },
+    Activity : function(obj) {
+        this.name = obj.name;
+        this.code = obj.code;
+        this.launch = function(_config){
+            console.log(_config)
             const _ACTIVITY = document.createElement("div");
             _ACTIVITY.classList = "activity";
             _ACTIVITY.setAttribute("id",this.name);
             _ACTIVITY.innerHTML=this.code
-            root.appendChild(_ACTIVITY);
+            Dreble.root.appendChild(_ACTIVITY);
             document.getElementById(this.name).style = `animation: _activity_${_config.animation} 0.25s;`;
             activitiesHistory.push(this.name);
             refreshRippleElements();
-    };
-    this.content = function(content){
-        document.getElementById(this.name).querySelector("d-content").innerHTML = content;
-    };
-    this.close = function(animation){
-        if(document.getElementById(this.name)===null) {
-            error("Tried to close an activity which doesn't exist by the id: '"+act+"'. Tried while being on the activity '"+activitiesHistory[activitiesHistory.length-1]+"'");
-            return;
+        };
+        this.content = function(content){
+            document.getElementById(this.name).querySelector("d-content").innerHTML = content;
+        };
+        this.close = function(animation){
+            if(document.getElementById(this.name)===null) {
+                error("Tried to close an activity which doesn't exist by the id: '"+act+"'. Tried while being on the activity '"+activitiesHistory[activitiesHistory.length-1]+"'");
+                return;
+            }
+            document.getElementById(this.name).style = ` animation: _activity_${animation} 0.4s;`;
+            const me = this.name
+            setTimeout(function(){ 
+                document.getElementById(me).remove();
+                activitiesHistory.pop();
+            }, 300);
         }
-        document.getElementById(this.name).style = ` animation: _activity_${animation} 0.4s;`;
-        const me = this.name
+    },
+    closeActivity : function(type){
+        const act = activitiesHistory[activitiesHistory.length-1];
+        document.getElementById(act).style = " animation: _activity_"+type+" 0.4s;";
         setTimeout(function(){ 
-            document.getElementById(me).remove();
+            document.getElementById(act).remove();
             activitiesHistory.pop();
-        }, 300);
+        }, 370);
     }
 }
+
 class FloatingButton extends  HTMLElement {
     constructor() {
         super();
@@ -76,7 +96,7 @@ class FloatingButton extends  HTMLElement {
             button.style = "background-image: url(" + this.getAttribute("src") +") ; background-repeat: no-repeat; background-position: center; font-size: 15px;"; 
         }
         if(this.classList.contains("disabled")=== false) button.setAttribute("onclick",this.getAttribute("onclick"));
-        this.parentElement.insertBefore(button,this.parentElement.children[0]);       
+        this.parentElement.insertBefore(button,this);       
         this.remove();
         button.addEventListener('click', newRipple);  
    }
@@ -100,14 +120,6 @@ class NavBarTab extends  HTMLElement {
    }
 }
 window.customElements.define('d-tabs', NavBarTab);
-function closeActivity(type){
-    const act = activitiesHistory[activitiesHistory.length-1];
-	document.getElementById(act).style = " animation: _activity_"+type+" 0.4s;";
-	setTimeout(function(){ 
-		document.getElementById(act).remove();
-		activitiesHistory.pop();
-	 }, 370);
-}
 
 function refreshRippleElements(){
     const buttons = document.getElementsByClassName('ripple');
@@ -130,12 +142,12 @@ function error(message){
 	console.error("Dreble > "+message);
 }
 
-var Names = [];
-var PrimaryColors = [];
-var SecondaryColors = [];
-var LightPrimaryColor = [];
-var BackgroundColor = [];
-var RippleEffectColor = [];
+let Names = [];
+let PrimaryColors = [];
+let SecondaryColors = [];
+let LightPrimaryColor = [];
+let BackgroundColor = [];
+let RippleEffectColor = [];
 function newTheme($configTheme){
     Names.push($configTheme["Name"]);
     PrimaryColors.push($configTheme["Primary"]);
@@ -225,6 +237,7 @@ function Menu(id,code){
 	background.classList = "menu_background";
 	background.setAttribute("onclick","closeMenu(this)")
 	menu.classList = "menu";
+    menu.setAttribute("page",id);
 	menu.setAttribute("id",menu_id); //Assigns a random ID
 	menu_window.classList = "menu_window";
 	menu_window.innerHTML = code;
@@ -233,14 +246,17 @@ function Menu(id,code){
 	menu.appendChild(background);
 	menu.appendChild(menu_window);
 	page.appendChild(menu);
+  	document.getElementById("root").setAttribute("menu","opened");
     refreshRippleElements();
 }
 const closeMenu=(act)=>{
     let me;
     if(typeof act =="object"){
          me = document.getElementById(act.getAttribute("toclose"));
+      	document.getElementById("root").setAttribute("menu","closed");
     }else{
          me = document.getElementById(act+"_appDrawer");
+		 document.getElementById("root").setAttribute("menu","closed");
     }
     me.classList.add("hiding");
 	setTimeout(function(){ 

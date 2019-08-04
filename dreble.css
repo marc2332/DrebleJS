@@ -31,9 +31,15 @@
     --BackgroundColor: white;
     --RippleEffect: white;
 }
-#root{ /*Body element*/
+body{
+  display:flex; 
+}
+.root{ /*Body element*/
   padding: 0;
   margin: 0;
+  overflow: hidden;
+  min-height: auto;
+  min-width: auto;
 }
 button::-moz-focus-inner{
   border:0;
@@ -124,7 +130,7 @@ button.disabled:not(.FloatingButton){
     animation: _create_fbtn linear 0.2s;
     transition: 0.2s;
     background-color: var(--PrimaryColor);
-    position: fixed;    
+    position: sticky;    
     border: none;
     margin: 0;
     padding: 0;
@@ -187,7 +193,7 @@ d-navbar{
   overflow-y: hidden;
   width: 100%;
   background: var(--PrimaryColor);
-  height:55px;  
+  min-height:55px;  
   box-shadow: 0px 3px 10px rgba(0,0,0,0.3);
 }
 d-navbar[content~="center"] d-tabs {
@@ -204,6 +210,7 @@ d-navbar > d-title{
   top:16px;
   margin-left: 5px;
   margin-right: 15px;
+  white-space:nowrap;
 }
 d-navbar d-tabs{
   transition: 0.1s;
@@ -250,31 +257,34 @@ d-navbar::-google-ms-scrollbar {display:none;}
 d-navbar::-khtml-scrollbar {display:none;}
 .activity{
   background: var(--BackgroundColor);
-  width: 100%;
-  max-height: 100%;
+  width: auto;
+  max-height: auto;
   box-sizing: border-box;
   top: 0;
   bottom:0;
   left:0;
   right: 0;
-  position:fixed;
+  position: absolute;
   overflow-y:hidden;
   overflow-x:hidden;
   margin: 0;
   padding: 0;
   box-shadow: 0px -2px 10px rgba(0,0,0,0.35);
+  display:flex;
+  flex-direction:column;
+  flex:1;
 }
 .activity d-content{
-  width: 98%;
+  width: auto;
   left: 0;
   top: 0;
   right: 0;
-  max-height: 90%;
+  max-height: auto;
   overflow-y: auto;
   overflow-x: hidden;
   display: block;
   position:relative;
-  margin: 15px 1%;
+  margin:2em;
 }
 @keyframes _activity_slide_up{
   from{
@@ -354,7 +364,7 @@ d-navbar::-khtml-scrollbar {display:none;}
   margin: 2px 0;
 }
 .dialog > .dialog_background{
-  position: fixed;
+  position: absolute;
   left: 0;
   top: 0;
   height: 100%;
@@ -371,7 +381,7 @@ d-navbar::-khtml-scrollbar {display:none;}
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  position: fixed;
+  position: absolute;
   border-radius: 5px;
   box-shadow: 0px 5px 15px rgba(0,0,0,0.25);
 }
@@ -395,7 +405,7 @@ d-navbar::-khtml-scrollbar {display:none;}
   left: 0;
   height: 100%;
   width: 100%;
-    overflow:none;
+  flex:0;
 }
 .menu.hiding > .menu_window{
     animation:_menu_left 0.35s;
@@ -405,7 +415,7 @@ d-navbar::-khtml-scrollbar {display:none;}
     opacity:0;
 }
 .menu > .menu_background{
-    position: fixed;
+    position: absolute;
     left: 0;
     top: 0;
     height: 100%;
@@ -415,10 +425,11 @@ d-navbar::-khtml-scrollbar {display:none;}
 }
 .menu > .menu_window{
   animation: _menu_right linear 0.15s;
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   background: white;
+  overflow:auto;
   height: 100%;
   width: 200px;
 }
@@ -469,12 +480,14 @@ div.card{
   margin: 8px;
   box-shadow: 0px 4px 5px rgba(0,0,0,0.2);
   border-radius: 2px;
+  overflow: auto;
 }
 div.card2{
   padding: 10px;
   margin: 810x;
   border:2px solid rgb(165,164,164);
   border-radius: 2px;
+  overflow: auto;
 }
 ul li{
   padding:7px 0px;
@@ -500,3 +513,4 @@ div[content~="center-center"] > *{
   padding: 0;
   margin: 0;
 }
+
